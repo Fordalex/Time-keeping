@@ -24,13 +24,17 @@ class ShiftsController extends Controller
     public function index()
     {
         $shifts = Shift::all();
+        $total_duration = 4;
+        $total_earnt = 0.50;
 
-        return view('shifts.index', ['shifts' => $shifts]);
+        return view('shifts.index', ['shifts' => $shifts, 'total_duration' => $total_duration, 'total_earnt' => $total_earnt]);
     }
 
     public function new()
     {
-        return view('shifts.new');
+        $shift = new Shift;
+
+        return view('shifts.new', ['shift' => $shift]);
     }
 
     public function edit(Shift $shift)

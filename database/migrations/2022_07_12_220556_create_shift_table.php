@@ -18,7 +18,7 @@ return new class extends Migration
             $table->integer('duration');
             $table->decimal('hourly_rate');
             $table->date('date');
-            $table->string('description');
+            $table->string('description')->nullable();
             $table->timestamps();
         });
     }
