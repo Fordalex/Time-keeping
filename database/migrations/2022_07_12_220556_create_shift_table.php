@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('shifts', function (Blueprint $table) {
             $table->id();
-            $table->integer('hours');
-            $table->integer('hourly_rate');
+            $table->integer('duration');
+            $table->decimal('hourly_rate');
             $table->date('date');
             $table->string('description');
             $table->timestamps();

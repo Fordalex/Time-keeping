@@ -14,7 +14,7 @@ class ShiftsController extends Controller
         Shift::create([
             'date' => Carbon::parse(request('date'))->format('Y-m-d H:i:s'),
             'description' => request('description'),
-            'hours' => request('hours'),
+            'duration' => request('duration'),
             'hourly_rate' => request('hourly_rate'),
         ]);
 
@@ -42,14 +42,14 @@ class ShiftsController extends Controller
     {
         // model validation?
         request()->validate([
-            'hours' => 'required',
+            'duration' => 'required',
             'hourly_rate' => 'required',
             'description' => 'required',
         ]);
 
         $shift->update([
             'description' => request('description'),
-            'hours' => request('hours'),
+            'duration' => request('duration'),
             'hourly_rate' => request('hourly_rate'),
         ]);
 

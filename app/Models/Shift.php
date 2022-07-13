@@ -10,7 +10,7 @@ class Shift extends Model
     use HasFactory;
 
     protected $fillable = [
-        'description', 'hours', 'hourly_rate', 'date'
+        'description', 'duration', 'hourly_rate', 'date'
     ];
 
     protected $casts = [
