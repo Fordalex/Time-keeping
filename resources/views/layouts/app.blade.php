@@ -5,7 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/daisyui@2.19.0/dist/full.css" rel="stylesheet" type="text/css" />
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2/dist/tailwind.min.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2/dist/tailwind.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="{{ URL::asset('/css/app.css') }}">
     <title>Freelancing - @yield('title')</title>
 </head>
 <body>
@@ -17,7 +18,9 @@
         @include('layouts.alert._alert')
     @endif
 
-    @yield('content')
+    <div class="page-container">
+        @yield('content')
+    </div>
 
 </body>
 </html>

@@ -1,0 +1,17 @@
+.page-container {
+    max-width: 1600px;
+    padding: 1rem;
+    display: block;
+    margin: auto;
+}
+
+.rangeMarks-container span {
+    width: 1px;
+    font-size: 10px;
+}
+
+.breadcrumbs-container {
+    padding-left: 2rem;
+    border-top: solid #cbcbcb 1px;
+    border-bottom: solid #cbcbcb 1px;
+}
