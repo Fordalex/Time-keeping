@@ -16,6 +16,6 @@
       </ul>
     </div>
     <div class="navbar-end">
-      <a class="btn" href="shifts/new">Add Shift</a>
+      <a class="btn" href="/shifts/new">Add Shift</a>
     </div>
   </div>
