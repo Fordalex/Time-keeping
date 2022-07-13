@@ -1,3 +1,12 @@
+body {
+    background-color: #fafafa;
+    min-height: 100vh;
+}
+
+.stat {
+    min-width: 163px;
+}
+
 .page-container {
     max-width: 1600px;
     padding: 1rem;
