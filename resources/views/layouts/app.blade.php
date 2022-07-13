@@ -13,6 +13,10 @@
     @include('layouts._navigation')
     @include('layouts._breadcrumbs')
 
+    @if ($flash_message = Session::get('flash_message'))
+        @include('layouts.alert._alert')
+    @endif
+
     @yield('content')
 
 </body>

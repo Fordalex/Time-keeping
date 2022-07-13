@@ -18,7 +18,7 @@ class ShiftsController extends Controller
             'hourly_rate' => request('hourly_rate'),
         ]);
 
-        return redirect('/shifts');
+        return redirect('/shifts')->with('flash_message', ["type" => "success", "message" => "Shift was created successfully!"]);
     }
 
     public function index()
@@ -53,6 +53,6 @@ class ShiftsController extends Controller
             'hourly_rate' => request('hourly_rate'),
         ]);
 
-        return redirect('/shifts');
+        return redirect('/shifts')->with('flash_message', ["type" => "success", "message" => "Shift was updated successfully!"]);;
     }
 }
