@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->integer('hours');
             $table->integer('hourly_rate');
-            $table->time('date');
+            $table->date('date');
             $table->string('description');
             $table->timestamps();
         });
