@@ -8,7 +8,7 @@
           @include('layouts._navigation_links')
         </ul>
       </div>
-      <a class="btn btn-ghost normal-case text-xl">Freelancing</a>
+      <a class="btn btn-ghost normal-case text-xl" href="/">Freelancing</a>
     </div>
     <div class="navbar-center hidden lg:flex">
       <ul class="menu menu-horizontal p-0">
