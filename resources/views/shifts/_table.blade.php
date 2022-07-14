@@ -1,4 +1,4 @@
-<div class="overflow-x-auto">
+<div class="overflow-x-auto border">
     <table class="table table-zebra w-full">
     <thead>
         <tr>

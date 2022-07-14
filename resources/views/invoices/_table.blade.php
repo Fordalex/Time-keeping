@@ -1,4 +1,4 @@
-<div class="overflow-x-auto">
+<div class="overflow-x-auto border">
     <table class="table table-zebra w-full">
     <thead>
         <tr>
@@ -12,6 +12,7 @@
                 <td>{{ $invoice->from_date }} - {{ $invoice->to_date }}</td>
                 <td>
                     <a href="/shifts/{{ $invoice->id }}/destory" class="btn btn-info">View</a>
+                    <a href="/shifts/{{ $invoice->id }}/destory" class="btn btn-warning">Download</a>
                     <a href="/shifts/{{ $invoice->id }}/destory" class="btn btn-error">Destory</a>
                 </td>
             </tr>
