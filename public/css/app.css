@@ -1,15 +1,24 @@
 body {
     background-color: #fafafa;
     min-height: 100vh;
+    position: relative;
 }
 
 .stat {
     min-width: 163px;
 }
 
+.inset {
+    max-width: 1600px;
+    padding: 1rem;
+    display: block;
+    margin: auto;
+}
+
 .page-container {
     max-width: 1600px;
     padding: 1rem;
+    padding-bottom: 7rem;
     display: block;
     margin: auto;
 }
@@ -25,4 +34,9 @@ body {
     border-bottom: solid #cbcbcb 1px;
     background-color: #3d4251;
     color: #fff;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
 }
