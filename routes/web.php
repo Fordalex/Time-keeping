@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ShiftsController;
+use App\Http\Controllers\InvoicesController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,9 +19,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
 Route::post('/shift', [ShiftsController::class, 'create']);
 Route::get('/shifts/{shift}/edit', [ShiftsController::class, 'edit']);
 Route::get('/shifts', [ShiftsController::class, 'index']);
 Route::get('/shifts/new', [ShiftsController::class, 'new']);
 Route::put('/shifts/{shift}', [ShiftsController::class, 'update']);
+
+Route::post('/invoice', [InvoicesController::class, 'create']);
+Route::get('/invoices', [InvoicesController::class, 'index']);
+Route::get('/invoices/new', [InvoicesController::class, 'new']);
