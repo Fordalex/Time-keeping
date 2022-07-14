@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@php $breadcrumbs = [["link" => "/", "label" => "Home"],["link" => "/invoices", "label" => "Invoices"]] @endphp
 @section('title', 'New Invoice')
 @section('content')
 

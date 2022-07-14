@@ -29,7 +29,7 @@
                 <form action="/invoices/new">
                     <input type="hidden" value="{{ $from_date->format('Y-m-d') }}" name="from_date">
                     <input type="hidden" value="{{ $to_date->format('Y-m-d') }}" name="to_date">
-                    <input class="btn btn-sm w-full" type="submit" value="Invoice">
+                    <input class="btn btn-success w-full" type="submit" value="Invoice">
                 </form>
               </div>
         </div>

@@ -20,7 +20,7 @@
                 <td>{{ MoneyHelper::format_money($shift->hourly_rate * ($shift->duration / 60)) }}</td>
                 <td>{{ $shift->description }}</td>
                 <td></td>
-                <td><a href="/shifts/{{ $shift->id }}/edit" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Edit</td>
+                <td><a href="/shifts/{{ $shift->id }}/edit" class="btn btn-info">Edit</td>
             </tr>
         @endforeach
     </tbody>

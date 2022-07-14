@@ -1,7 +1,8 @@
 <div class="text-sm breadcrumbs breadcrumbs-container">
     <ul>
-        <li><a>Home</a></li>
-        <li><a>Documents</a></li>
-        <li>Add Document</li>
+        @foreach($breadcrumbs as $breadcrumb)
+            <li><a href="{{ $breadcrumb["link"] }}">{{ $breadcrumb["label"] }}</a></li>
+        @endforeach
+        <li>@yield('title')</li>
     </ul>
 </div>
