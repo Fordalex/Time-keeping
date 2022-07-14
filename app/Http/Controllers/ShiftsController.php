@@ -23,11 +23,24 @@ class ShiftsController extends Controller
 
     public function index()
     {
-        $shifts = Shift::all();
-        $total_duration = 4;
-        $total_earnt = 0.50;
+        $from_date = Carbon::today()->subDays(30);
+        $to_date = Carbon::today();
+        if (isset($_REQUEST["from_date"]) && isset($_REQUEST["to_date"]))
+        {
+            $from_date = Carbon::parse($_REQUEST["from_date"]);
+            $to_date = Carbon::parse($_REQUEST["to_date"]);
+        }
+        $shifts = Shift::all()->where('date', '>', $from_date)->where('date', '<', $to_date)->sortby('date');
+        $total_duration = $shifts->sum('duration');
+        $total_earnt = 0;
 
-        return view('shifts.index', ['shifts' => $shifts, 'total_duration' => $total_duration, 'total_earnt' => $total_earnt]);
+        return view('shifts.index', [
+            'shifts' => $shifts,
+            'total_duration' => $total_duration,
+            'total_earnt' => $total_earnt,
+            'from_date' => $from_date,
+            'to_date' => $to_date
+        ]);
     }
 
     public function new()
