@@ -32,7 +32,7 @@ class ShiftsController extends Controller
         }
         $shifts = Shift::all()->where('date', '>', $from_date)->where('date', '<', $to_date)->sortby('date');
         $total_duration = $shifts->sum('duration');
-        $total_earnt = 0;
+        $total_earnt = ShiftsController::total_earnt($shifts);
 
         return view('shifts.index', [
             'shifts' => $shifts,
@@ -61,7 +61,6 @@ class ShiftsController extends Controller
         request()->validate([
             'duration' => 'required',
             'hourly_rate' => 'required',
-            'description' => 'required',
         ]);
 
         $shift->update([
@@ -71,5 +70,16 @@ class ShiftsController extends Controller
         ]);
 
         return redirect('/shifts')->with('flash_message', ["type" => "success", "message" => "Shift was updated successfully!"]);;
+    }
+    // helper methods
+
+    private function total_earnt($shifts)
+    {
+        $total_earnt = 0;
+        foreach($shifts as $shift)
+        {
+            $total_earnt += ($shift->duration / 60) * $shift->hourly_rate;
+        }
+        return $total_earnt;
     }
 }
