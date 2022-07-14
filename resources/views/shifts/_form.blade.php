@@ -11,7 +11,7 @@
 
                 <div class="col-span-6">
                     <label class="label">Date</label>
-                    <input type="date" name="date" class="input input-bordered w-full w-full">
+                    <input type="date" name="date" class="input input-bordered w-full w-full" value="{{ $shift->date?->format('Y-m-d') }}">
                 </div>
 
                 <div class="col-span-6">
