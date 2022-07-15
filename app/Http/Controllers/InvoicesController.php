@@ -26,6 +26,7 @@ class InvoicesController extends Controller
             'bank' => request('bank'),
             'account_number' => request('account_number'),
             'sort_code' => request('sort_code'),
+            'number' => 2,
         ]);
         $shifts = Shift::all()->where('date', '>', $from_date)->where('date', '<', $to_date)->sortby('date');
         foreach($shifts as $shift)
@@ -36,6 +37,7 @@ class InvoicesController extends Controller
                 'duration' => $shift->duration,
                 'hourly_rate' => $shift->hourly_rate,
                 'invoice_id' => $invoice->id,
+                'shift_id' => $shift->id,
             ]);
         }
 

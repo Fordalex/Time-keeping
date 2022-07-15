@@ -9,6 +9,11 @@ class Shift extends Model
 {
     use HasFactory;
 
+    public function billed_shift()
+    {
+        return $this->hasone(BilledShift::class);
+    }
+
     protected $fillable = [
         'description', 'duration', 'hourly_rate', 'date'
     ];

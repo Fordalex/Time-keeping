@@ -17,12 +17,13 @@ return new class extends Migration
             $table->date('from_date');
             $table->date('to_date');
             $table->date('due_date');
+            $table->integer('number');
+            $table->string('account_number');
+            $table->string('bank');
             $table->string('company_name');
             $table->string('company_address');
-            $table->string('terms');
-            $table->string('bank');
-            $table->string('account_number');
             $table->string('sort_code');
+            $table->string('terms');
             $table->id();
             $table->timestamps();
         });

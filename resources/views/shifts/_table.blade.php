@@ -7,7 +7,7 @@
         <th>Rate</th>
         <th>Earnt</th>
         <th>Description</th>
-        <th>Billed</th>
+        <th>Invoiced</th>
         <th>Actions</th>
         </tr>
     </thead>
@@ -19,7 +19,11 @@
                 <td>{{ MoneyHelper::format_money($shift->hourly_rate) }}</td>
                 <td>{{ MoneyHelper::format_money($shift->hourly_rate * ($shift->duration / 60)) }}</td>
                 <td>{{ $shift->description }}</td>
-                <td></td>
+                <td>
+                    @if($shift->billed_shift)
+                        <a class="btn btn-info" href='invoices/{{ $shift->billed_shift->invoice_id }}'>Invoice #{{ $shift->billed_shift->invoice->number }}</a>
+                    @endif
+                </td>
                 <td><a href="/shifts/{{ $shift->id }}/edit" class="btn btn-info">Edit</td>
             </tr>
         @endforeach

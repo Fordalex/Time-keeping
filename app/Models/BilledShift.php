@@ -11,11 +11,16 @@ class BilledShift extends Model
 
     public function invoice()
     {
-        $this->belongsto(Invoice::class);
+        return $this->belongsto(Invoice::class);
+    }
+
+    public function shift()
+    {
+        return $this->belongsto(Shift::class);
     }
 
     protected $fillable = [
-        'date', 'description', 'duration', 'hourly_rate', 'invoice_id'
+        'date', 'description', 'duration', 'hourly_rate', 'invoice_id', 'shift_id'
     ];
 
     protected $casts = [

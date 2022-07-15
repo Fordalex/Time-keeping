@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('billed_shifts', function (Blueprint $table) {
             $table->foreignId('invoice_id')->constrained();
+            $table->foreignId('shift_id')->constrained();
             $table->id();
             $table->integer('duration');
             $table->decimal('hourly_rate');
