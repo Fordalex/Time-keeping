@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('shifts', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('company_id')->constrained();
+            $table->foreignId('company_id')->constrained()->on('companies')->onDelete('cascade');
             $table->integer('duration');
             $table->decimal('hourly_rate');
             $table->date('date');

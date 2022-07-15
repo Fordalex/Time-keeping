@@ -22,6 +22,7 @@ class InvoicesController extends Controller
             'from_date' => $from_date,
             'to_date' => $to_date,
             'due_date' => Carbon::parse(request('due_date'))->format('Y-m-d H:i:s'),
+            'company_id' => $company->id,
             'company_name' => $company->name,
             'company_address' => $company->first_line_address,
             'terms' => request('terms'),
@@ -101,7 +102,7 @@ class InvoicesController extends Controller
             'invoice' => $invoice,
             'billed_shifts' => $billed_shifts,
         ]);
-        return $pdf->download('invoice.pdf');
+        return $pdf->download("{$invoice->company->name} {$invoice->number}.pdf");
         // return redirect('/invoices')->with('flash_message', ["type" => "success", "message" => "Invoice was downloaded successfully!"]);
 
     }

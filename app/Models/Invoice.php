@@ -14,10 +14,16 @@ class Invoice extends Model
         return $this->hasmany(BilledShift::class);
     }
 
+    public function company()
+    {
+        return $this->belongsto(Company::class);
+    }
+
     protected $fillable = [
         'from_date',
         'to_date',
         'due_date',
+        'company_id',
         'company_name',
         'company_address',
         'terms',
