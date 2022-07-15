@@ -23,7 +23,8 @@ class Invoice extends Model
         'terms',
         'bank',
         'account_number',
-        'sort_code'
+        'sort_code',
+        'number'
     ];
 
     protected $casts = [
