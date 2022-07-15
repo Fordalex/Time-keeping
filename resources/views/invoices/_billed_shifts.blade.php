@@ -14,7 +14,7 @@
                     <td>{{ $billed_shift->date->format('d M Y') }}</td>
                     <td>{{ TimeHelper::format_minutes($billed_shift->duration) }}</td>
                     <td>{{ MoneyHelper::format_money($billed_shift->hourly_rate) }}</td>
-                    <td>{{ MoneyHelper::format_money($billed_shift->hourly_rate * ($shift->duration / 60)) }}</td>
+                    <td>{{ MoneyHelper::format_money($billed_shift->hourly_rate * ($billed_shift->duration / 60)) }}</td>
                 </tr>
             @endforeach
         </tbody>

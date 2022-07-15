@@ -29,3 +29,4 @@ Route::post('/invoice', [InvoicesController::class, 'create']);
 Route::get('/invoice/{invoice}', [InvoicesController::class, 'show']);
 Route::get('/invoices', [InvoicesController::class, 'index']);
 Route::get('/invoices/new', [InvoicesController::class, 'new']);
+Route::get('/invoice/download/{invoice}', [InvoicesController::class, 'download']);

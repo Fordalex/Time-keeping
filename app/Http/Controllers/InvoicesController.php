@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 use App\Models\Invoice;
+use App\Models\Shift;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use PDF;
 
 class InvoicesController extends Controller
 
@@ -37,8 +39,10 @@ class InvoicesController extends Controller
 
     public function show(Invoice $invoice)
     {
-        return view('invoices.show', [
+        $billed_shifts = Shift::all();
+        return view('invoices.download', [
             'invoice' => $invoice,
+            'billed_shifts' => $billed_shifts,
         ]);
     }
 
@@ -53,5 +57,18 @@ class InvoicesController extends Controller
             'from_date' => $from_date,
             'to_date' => $to_date
         ]);
+    }
+
+    public function download(Invoice $invoice)
+    {
+        $invoice = Invoice::find($invoice->id);
+        $billed_shifts = Shift::all();
+        $pdf = PDF::loadView('invoices.download', [
+            'invoice' => $invoice,
+            'billed_shifts' => $billed_shifts,
+        ]);
+        return $pdf->download('invoice.pdf');
+        // return redirect('/invoices')->with('flash_message', ["type" => "success", "message" => "Invoice was downloaded successfully!"]);
+
     }
 }

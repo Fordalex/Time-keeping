@@ -12,7 +12,7 @@
                 <td>{{ $invoice->from_date }} - {{ $invoice->to_date }}</td>
                 <td>
                     <a href="/invoice/{{ $invoice->id }}" class="btn btn-info">View</a>
-                    <a href="/invoice/{{ $invoice->id }}/destory" class="btn btn-warning">Download</a>
+                    <a href="/invoice/download/{{ $invoice->id }}" class="btn btn-warning">Download</a>
                     <a href="/invoice/{{ $invoice->id }}/destory" class="btn btn-error">Destory</a>
                 </td>
             </tr>
