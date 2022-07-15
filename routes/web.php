@@ -26,5 +26,6 @@ Route::get('/shifts/new', [ShiftsController::class, 'new']);
 Route::put('/shifts/{shift}', [ShiftsController::class, 'update']);
 
 Route::post('/invoice', [InvoicesController::class, 'create']);
+Route::get('/invoice/{invoice}', [InvoicesController::class, 'show']);
 Route::get('/invoices', [InvoicesController::class, 'index']);
 Route::get('/invoices/new', [InvoicesController::class, 'new']);

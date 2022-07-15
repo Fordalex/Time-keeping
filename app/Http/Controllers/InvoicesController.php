@@ -35,6 +35,13 @@ class InvoicesController extends Controller
         ]);
     }
 
+    public function show(Invoice $invoice)
+    {
+        return view('invoices.show', [
+            'invoice' => $invoice,
+        ]);
+    }
+
     public function new()
     {
         $invoice = new invoice;

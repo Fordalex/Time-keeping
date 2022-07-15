@@ -11,9 +11,9 @@
             <tr>
                 <td>{{ $invoice->from_date }} - {{ $invoice->to_date }}</td>
                 <td>
-                    <a href="/shifts/{{ $invoice->id }}/destory" class="btn btn-info">View</a>
-                    <a href="/shifts/{{ $invoice->id }}/destory" class="btn btn-warning">Download</a>
-                    <a href="/shifts/{{ $invoice->id }}/destory" class="btn btn-error">Destory</a>
+                    <a href="/invoice/{{ $invoice->id }}" class="btn btn-info">View</a>
+                    <a href="/invoice/{{ $invoice->id }}/destory" class="btn btn-warning">Download</a>
+                    <a href="/invoice/{{ $invoice->id }}/destory" class="btn btn-error">Destory</a>
                 </td>
             </tr>
         @endforeach

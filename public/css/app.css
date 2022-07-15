@@ -36,6 +36,16 @@ body {
     color: #fff;
 }
 
+.invoice-total {
+    border: solid grey 3px;
+    margin-top: 1rem;
+    margin-left: auto;
+    width: 200px;
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+}
+
 .footer {
     position: absolute;
     bottom: 0;
