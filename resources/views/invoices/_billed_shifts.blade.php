@@ -9,7 +9,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach($billed_shifts as $billed_shift)
+            @foreach($invoice->billed_shifts as $billed_shift)
                 <tr>
                     <td>{{ $billed_shift->date->format('d M Y') }}</td>
                     <td>{{ TimeHelper::format_minutes($billed_shift->duration) }}</td>

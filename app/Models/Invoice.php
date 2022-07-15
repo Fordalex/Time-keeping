@@ -9,6 +9,11 @@ class Invoice extends Model
 {
     use HasFactory;
 
+    public function billed_shifts()
+    {
+        return $this->hasmany(BilledShift::class);
+    }
+
     protected $fillable = [
         'from_date',
         'to_date',

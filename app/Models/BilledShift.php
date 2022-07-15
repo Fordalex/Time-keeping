@@ -9,8 +9,13 @@ class BilledShift extends Model
 {
     use HasFactory;
 
+    public function invoice()
+    {
+        $this->belongsto(Invoice::class);
+    }
+
     protected $fillable = [
-        'description', 'duration', 'hourly_rate', 'date'
+        'date', 'description', 'duration', 'hourly_rate', 'invoice_id'
     ];
 
     protected $casts = [

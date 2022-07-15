@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Invoice;
 use App\Models\Shift;
+use App\Models\BilledShift;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -13,9 +14,11 @@ class InvoicesController extends Controller
 {
     public function create()
     {
-        Invoice::create([
-            'from_date' => Carbon::parse(request('from_date'))->format('Y-m-d H:i:s'),
-            'to_date' => Carbon::parse(request('to_date'))->format('Y-m-d H:i:s'),
+        $from_date = Carbon::parse(request('from_date'))->format('Y-m-d H:i:s');
+        $to_date = Carbon::parse(request('to_date'))->format('Y-m-d H:i:s');
+        $invoice = Invoice::create([
+            'from_date' => $from_date,
+            'to_date' => $to_date,
             'due_date' => Carbon::parse(request('due_date'))->format('Y-m-d H:i:s'),
             'company_name' => "Testing name",
             'company_address' => "Testing address",
@@ -24,6 +27,17 @@ class InvoicesController extends Controller
             'account_number' => request('account_number'),
             'sort_code' => request('sort_code'),
         ]);
+        $shifts = Shift::all()->where('date', '>', $from_date)->where('date', '<', $to_date)->sortby('date');
+        foreach($shifts as $shift)
+        {
+            $billed_shift = BilledShift::create([
+                'date' => $shift->date,
+                'description' => $shift->description,
+                'duration' => $shift->duration,
+                'hourly_rate' => $shift->hourly_rate,
+                'invoice_id' => $invoice->id,
+            ]);
+        }
 
         return redirect('/invoices')->with('flash_message', ["type" => "success", "message" => "Invoice was created successfully!"]);
     }
