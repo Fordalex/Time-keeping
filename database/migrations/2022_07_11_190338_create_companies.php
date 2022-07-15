@@ -13,13 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('shifts', function (Blueprint $table) {
+        Schema::create('companies', function (Blueprint $table) {
+            $table->string('name');
+            $table->string('first_line_address');
+            $table->string('city');
+            $table->string('country');
+            $table->string('postcode');
             $table->id();
-            $table->foreignId('company_id')->constrained();
-            $table->integer('duration');
-            $table->decimal('hourly_rate');
-            $table->date('date');
-            $table->string('description')->nullable();
             $table->timestamps();
         });
     }
@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('shifts');
+        Schema::dropIfExists('companies');
     }
 };

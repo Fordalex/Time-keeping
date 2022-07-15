@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Shift;
+use App\Models\Company;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -45,14 +46,23 @@ class ShiftsController extends Controller
 
     public function new()
     {
+        $companies = Company::all();
         $shift = new Shift;
 
-        return view('shifts.new', ['shift' => $shift]);
+        return view('shifts.new', [
+            'shift' => $shift,
+            'companies' => $companies,
+        ]);
     }
 
     public function edit(Shift $shift)
     {
-        return view('shifts.edit', ['shift' => $shift]);
+        $companies = Company::all();
+
+        return view('shifts.edit', [
+            'shift' => $shift,
+            'companies' => $companies,
+        ]);
     }
 
     public function update(Shift $shift)

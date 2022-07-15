@@ -21,9 +21,10 @@
 
                 <div class="col-span-6">
                     <label class="label">Company</label>
-                    <select class="select select-bordered w-full">
-                        <option>Commit Digital</option>
-                        <option>Learning People</option>
+                    <select class="select select-bordered w-full" name="company_id">
+                        @foreach($companies as $company)
+                            <option value="{{ $company->id }}">{{ $company->name }}</option>
+                        @endforeach
                     </select>
                 </div>
 

@@ -14,8 +14,13 @@ class Shift extends Model
         return $this->hasone(BilledShift::class);
     }
 
+    public function company()
+    {
+        return $this->belongsto(Company::class);
+    }
+
     protected $fillable = [
-        'description', 'duration', 'hourly_rate', 'date'
+        'description', 'duration', 'hourly_rate', 'date', 'company_id'
     ];
 
     protected $casts = [
