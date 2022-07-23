@@ -11,7 +11,7 @@
     </div>
 
     <div class="col-span-1 flex items-end">
-        <button type="submit" class="btn btn-warning w-full">Filter</button>
+        <button type="submit" class="btn w-full">Filter</button>
     </div>
 </form>
 
