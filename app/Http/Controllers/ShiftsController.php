@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Shift;
 use App\Models\Company;
+use MoneyHelper;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -17,6 +18,7 @@ class ShiftsController extends Controller
             'description' => request('description'),
             'duration' => request('duration'),
             'hourly_rate' => request('hourly_rate'),
+            'company_id' => request('company_id'),
         ]);
 
         return redirect('/shifts')->with('flash_message', ["type" => "success", "message" => "Shift was created successfully!"]);
@@ -31,9 +33,9 @@ class ShiftsController extends Controller
             $from_date = Carbon::parse($_REQUEST["from_date"]);
             $to_date = Carbon::parse($_REQUEST["to_date"]);
         }
-        $shifts = Shift::all()->where('date', '>', $from_date)->where('date', '<', $to_date)->sortby('date');
+        $shifts = Shift::all()->where('date', '>=', $from_date)->where('date', '<=', $to_date)->sortby('date');
         $total_duration = $shifts->sum('duration');
-        $total_earnt = ShiftsController::total_earnt($shifts);
+        $total_earnt = MoneyHelper::total_earnt($shifts);
 
         return view('shifts.index', [
             'shifts' => $shifts,
@@ -77,19 +79,10 @@ class ShiftsController extends Controller
             'description' => request('description'),
             'duration' => request('duration'),
             'hourly_rate' => request('hourly_rate'),
+            'date' => Carbon::parse(request('date'))->format('Y-m-d H:i:s'),
+            'company_id' => request('company_id')
         ]);
 
         return redirect('/shifts')->with('flash_message', ["type" => "success", "message" => "Shift was updated successfully!"]);;
-    }
-    // helper methods
-
-    private function total_earnt($shifts)
-    {
-        $total_earnt = 0;
-        foreach($shifts as $shift)
-        {
-            $total_earnt += ($shift->duration / 60) * $shift->hourly_rate;
-        }
-        return $total_earnt;
     }
 }

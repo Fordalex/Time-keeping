@@ -1,28 +1,28 @@
-<div class="overflow-x-auto border">
-    <table class="table table-zebra w-full">
+<div class="invoice-table">
+    <table>
         <thead>
-            <tr>
-            <th>Date</th>
-            <th>Duration</th>
-            <th>Rate</th>
-            <th>Amount</th>
+            <tr class="table-header">
+                <td class="th">Date</td>
+                <td class="th">Duration</td>
+                <td class="th">Rate</td>
+                <td class="th">Amount</td>
             </tr>
         </thead>
         <tbody>
             @foreach($invoice->billed_shifts as $billed_shift)
                 <tr>
                     <td>{{ $billed_shift->date->format('d M Y') }}</td>
-                    <td>{{ TimeHelper::format_minutes($billed_shift->duration) }}</td>
+                    <td>{{ TimeHelper::format_minutes($billed_shift->duration, " ") }}</td>
                     <td>{{ MoneyHelper::format_money($billed_shift->hourly_rate) }}</td>
                     <td>{{ MoneyHelper::format_money($billed_shift->hourly_rate * ($billed_shift->duration / 60)) }}</td>
                 </tr>
             @endforeach
+            <tr class="invoice-total">
+                <td></td>
+                <td></td>
+                <td><b>Total:</b></td>
+                <td>{{ MoneyHelper::format_money(MoneyHelper::total_earnt($billed_shifts)) }}</td>
+            </tr>
         </tbody>
     </table>
 </div>
-
-<div class="invoice-total">
-    <b colspan="2">Total:</b>
-    <p colspan="2">£0.00</p>
-</div>
-

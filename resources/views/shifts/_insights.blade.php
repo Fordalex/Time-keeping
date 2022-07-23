@@ -1,6 +1,12 @@
 <div class="py-4 flex justify-center">
     <div class="stats stats-horizontal lg:stats-horizontal shadow">
         <div class="stat">
+            <div class="stat-title">Days</div>
+            <div class="stat-value">{{ $from_date->diffInDays($to_date) }}</div>
+            <div class="stat-desc"></div>
+        </div>
+
+        <div class="stat">
             <div class="stat-title">Shifts</div>
             <div class="stat-value">{{ count($shifts) }}</div>
             <div class="stat-desc"></div>
@@ -8,7 +14,7 @@
 
         <div class="stat">
             <div class="stat-title">Duration</div>
-            <div class="stat-value">{{ TimeHelper::format_minutes($total_duration) }}</div>
+            <div class="stat-value">{{ TimeHelper::format_minutes($total_duration, " ") }}</div>
             <div class="stat-desc"></div>
         </div>
 
