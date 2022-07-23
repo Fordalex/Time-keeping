@@ -13,7 +13,7 @@
                 <td>
                     <a href="/company/{{ $company->id }}" class="btn btn-info">View</a>
                     <a href="/company/{{ $company->id }}/edit" class="btn btn-warning">Edit</a>
-                    <a href="/company/{{ $company->id }}/destroy" class="btn btn-error">Destory</a>
+                    <a href="/company/{{ $company->id }}/destroy" class="btn btn-error">Destroy</a>
                 </td>
             </tr>
         @endforeach
