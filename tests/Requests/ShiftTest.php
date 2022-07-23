@@ -3,6 +3,7 @@
 namespace Tests\Requests;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Carbon;
 use Tests\TestCase;
@@ -11,6 +12,8 @@ use App\Models\Shift;
 
 class ShiftTest extends TestCase
 {
+    use DatabaseTransactions;
+
     // Test that a shift is created with a company attached.
     public function test_shifts_create()
     {
@@ -23,11 +26,10 @@ class ShiftTest extends TestCase
             'company_id' => $company->id
         ];
         $response = $this->post('/shift', $shift_attributes);
-
-        $response->assertStatus(302);
         $response->assertRedirect('/shifts');
         $response->assertSessionHas('flash_message', ["type" => "success", "message" => "Shift was created successfully!"]);
         $this->assertDatabaseHas('shifts', $shift_attributes);
+        $this->assertDatabaseCount('shifts', 1);
     }
 
     public function test_shifts_index()
@@ -85,5 +87,6 @@ class ShiftTest extends TestCase
         $response->assertStatus(302);
         $this->assertDatabaseMissing('shifts', $old_attributes);
         $this->assertDatabaseHas('shifts', $new_attributes);
+        $this->assertDatabaseCount('shifts', 1);
     }
 }
