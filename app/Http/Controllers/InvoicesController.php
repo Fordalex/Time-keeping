@@ -31,7 +31,8 @@ class InvoicesController extends Controller
             'sort_code' => request('sort_code'),
             'number' => 2,
         ]);
-        $shifts = Shift::all()->where('date', '>', $from_date)->where('date', '<', $to_date)->sortby('date');
+        // this needs to be moved into a scope or model method
+        $shifts = Shift::all()->where('date', '>=', $from_date)->where('date', '<=', $to_date)->sortby('date');
         foreach($shifts as $shift)
         {
             $billed_shift = BilledShift::create([
@@ -90,7 +91,7 @@ class InvoicesController extends Controller
 
         return redirect('/invoices')->with('flash_message', [
             "type" => "warning",
-            "message" => "Invoice was destory!"
+            "message" => "Invoice was destroy!"
         ]);
     }
 
