@@ -18,8 +18,8 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // delete all
-        DB::table('companies')->delete();
         DB::table('invoices')->delete();
+        DB::table('companies')->delete();
         DB::table('billed_shifts')->delete();
         DB::table('shifts')->delete();
 
