@@ -16,7 +16,7 @@
         @foreach($shifts as $shift)
             <tr>
                 <td>{{ $shift->date->format('d M Y') }}</td>
-                <td>{{ TimeHelper::format_minutes($shift->duration) }}</td>
+                <td>{{ TimeHelper::format_minutes($shift->duration, " ") }}</td>
                 <td>{{ MoneyHelper::format_money($shift->hourly_rate) }}</td>
                 <td>{{ MoneyHelper::format_money($shift->hourly_rate * ($shift->duration / 60)) }}</td>
                 <td>{{ $shift->description }}</td>
@@ -26,7 +26,10 @@
                         <a class="btn btn-info" href='invoice/{{ $shift->billed_shift->invoice_id }}'>Invoice #{{ $shift->billed_shift->invoice->number }}</a>
                     @endif
                 </td>
-                <td><a href="/shifts/{{ $shift->id }}/edit" class="btn btn-info">Edit</td>
+                <td>
+                    <a href="/shifts/{{ $shift->id }}/edit" class="btn btn-warning">Edit</a>
+                    <a href="/shifts/{{ $shift->id }}/edit" class="btn btn-error">Destroy</a>
+                </td>
             </tr>
         @endforeach
     </tbody>

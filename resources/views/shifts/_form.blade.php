@@ -33,7 +33,7 @@
                     <input type="range" min="0" max="480" value="{{ $shift->duration }}" class="range" step="15" name="duration" />
                     <div class="w-full flex justify-between text-xs px-2 rangeMarks-container">
                         @foreach(range(0, 32) as $i)
-                            <span>| {{ TimeHelper::format_minutes($i * 15) }}</span>
+                            <span>| {{ TimeHelper::format_minutes($i * 15, "") }}</span>
                         @endforeach
                     </div>
                 </div>
