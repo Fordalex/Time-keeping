@@ -20,7 +20,11 @@ class Shift extends Model
     }
 
     protected $fillable = [
-        'description', 'duration', 'hourly_rate', 'date', 'company_id'
+        'description',
+        'duration',
+        'hourly_rate',
+        'date',
+        'company_id'
     ];
 
     protected $casts = [
