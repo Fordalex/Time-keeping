@@ -168,12 +168,19 @@ class DatabaseSeeder extends Seeder
             'description' => "Mentoring",
             'company_id' => $learning_people->id,
         ]);
-        // Invoice has been sent from 19th June 2022 - 21st July 2022 # Learning People
+        // Invoice has been sent from 19th June 2022 - 21st July 2022 # Learning People ^^
         DB::table('shifts')->insert([
             'duration' => 60,
             'hourly_rate' => 20.00,
             'date' => new Carbon('2022-07-22'),
             'description' => "Mentoring",
+            'company_id' => $learning_people->id,
+        ]);
+        DB::table('shifts')->insert([
+            'duration' => 30,
+            'hourly_rate' => 20.00,
+            'date' => new Carbon('2022-07-24'),
+            'description' => "Marking a project",
             'company_id' => $learning_people->id,
         ]);
     }
