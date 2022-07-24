@@ -34,6 +34,52 @@ class ShiftTest extends TestCase
 
     public function test_shifts_index()
     {
+        $today = Carbon::today();
+        $tomorrow = Carbon::tomorrow();
+        $company = Company::factory()->create();
+        $shift = Shift::factory()
+            ->for($company)
+            ->state([
+                'date' => Carbon::today(),
+            ])
+            ->create();
+
+        // $collection = new Shift;
+        // $collection->newCollection(
+        //     array(
+        //         $shift,
+        //     )
+        // );
+
+        $response = $this->get('/shifts', [
+            'from_date' => $today,
+            'to_date' => $tomorrow,
+        ]);
+
+        // error_log("testing");
+        // dd($response);
+
+        // dd($collection);
+        // error_log(gettype($collection));
+        $response->assertOk();
+        $response->assertViewHasAll([
+            // 'shifts' => $collection,
+            'total_duration' => 60,
+            'total_earnt' => 20.0,
+            // 'from_date' => $today,
+            // 'to_date' => $tomorrow,
+        ]);
+    }
+
+    public function test_shifts_new()
+    {
+        $response = $this->get('/shifts/new');
+
+        $response->assertOk();
+    }
+
+    public function test_shifts_edit()
+    {
         $company = Company::factory()->create();
         $shift = Shift::factory()->for($company)->create();
 
@@ -41,21 +87,6 @@ class ShiftTest extends TestCase
 
         $response->assertOk();
     }
-
-    public function test_shifts_new()
-    {
-        $response = $this->get('/shifts');
-
-        $response->assertOk();
-    }
-
-    public function test_shifts_edit()
-    {
-        $response = $this->get('/shifts/new');
-
-        $response->assertOk();
-    }
-
 
     public function test_shifts_update()
     {
