@@ -32,6 +32,8 @@ class InvoiceTest extends TestCase
             'terms' => 'Payment within 14 days',
             'bank' => 'HSBC',
             'account_number' => '01010101',
+            'sent' => false,
+            'paid' => false,
             'sort_code' => '00-00-00'
         ];
         $response = $this->post('/invoice', $invoice_attributes);

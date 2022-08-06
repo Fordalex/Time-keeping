@@ -27,6 +27,8 @@ class InvoiceHelper
             'account_number' => $attributes['account_number'],
             'sort_code' => $attributes['sort_code'],
             'number' => $invoice_number,
+            'paid' => $attributes['paid'],
+            'sent' => $attributes['sent'],
         ]);
         // this needs to be moved into a scope or model method
         $shifts = Shift::all()->where('date', '>=', $from_date)->where('date', '<=', $to_date)->sortby('date');

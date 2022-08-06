@@ -28,7 +28,9 @@ class InvoiceFactory extends Factory
             'bank' => 'YOUI',
             'account_number' => '01010101',
             'sort_code' => '00-00-00',
-            'number' => '001'
+            'number' => '001',
+            'sent' => false,
+            'paid' => false,
         ];
     }
 }

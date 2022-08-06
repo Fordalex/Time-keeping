@@ -50,3 +50,7 @@ body {
     position: absolute;
     bottom: 0;
 }
+
+.paid-icon {
+    width: 45px;
+}

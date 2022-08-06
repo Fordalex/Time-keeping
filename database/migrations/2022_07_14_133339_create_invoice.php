@@ -23,8 +23,10 @@ return new class extends Migration
             $table->string('bank');
             $table->string('company_name');
             $table->string('company_address');
+            $table->boolean('sent');
             $table->string('sort_code');
             $table->string('terms');
+            $table->boolean('paid');
             $table->id();
             $table->timestamps();
         });

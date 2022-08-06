@@ -24,7 +24,9 @@ class InvoicesController extends Controller
             'terms' => request('terms'),
             'bank' => request('bank'),
             'account_number' => request('account_number'),
-            'sort_code' => request('sort_code')
+            'sort_code' => request('sort_code'),
+            'paid' => request('paid'),
+            'sent' => request('sent')
         ];
         InvoiceHelper::create_invoice($attributes);
 

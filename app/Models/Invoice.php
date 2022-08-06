@@ -31,17 +31,19 @@ class Invoice extends Model
     }
 
     protected $fillable = [
-        'from_date',
-        'to_date',
+        'account_number',
         'due_date',
         'company_id',
         'company_name',
         'company_address',
-        'terms',
         'bank',
-        'account_number',
+        'from_date',
+        'number',
+        'paid',
+        'sent',
         'sort_code',
-        'number'
+        'to_date',
+        'terms',
     ];
 
     protected $casts = [

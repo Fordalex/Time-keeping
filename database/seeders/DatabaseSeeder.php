@@ -171,7 +171,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $invoice_attributes_july = [
-            'from_date' => new Carbon('2022-06-20'),
+            'from_date' => new Carbon('2022-06-19'),
             'to_date' => new Carbon('2022-07-21'),
             'due_date' => new Carbon('2022-08-04'),
             'company_id' => $learning_people->id,
@@ -179,6 +179,8 @@ class DatabaseSeeder extends Seeder
             'bank' => 'HSBC',
             'account_number' => env('SORT_CODE'),
             'sort_code' => env('ACCOUNT_NUMBER'),
+            'paid' => true,
+            'sent' => true
         ];
         InvoiceHelper::create_invoice($invoice_attributes_july);
 
@@ -268,7 +270,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $invoice_attributes_aug = [
-            'from_date' => new Carbon('2022-07-20'),
+            'from_date' => new Carbon('2022-07-22'),
             'to_date' => new Carbon('2022-08-21'),
             'due_date' => new Carbon('2022-09-04'),
             'company_id' => $learning_people->id,
@@ -276,6 +278,8 @@ class DatabaseSeeder extends Seeder
             'bank' => 'HSBC',
             'account_number' => env('SORT_CODE'),
             'sort_code' => env('ACCOUNT_NUMBER'),
+            'paid' => false,
+            'sent' => false,
         ];
         InvoiceHelper::create_invoice($invoice_attributes_aug);
     }
