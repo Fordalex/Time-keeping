@@ -71,3 +71,33 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+## console log
+
+error_log('Some message here.');
+
+## Testing view
+
+Run the test suite:
+
+    php artisan test
+
+// contains
+
+$this->assertView('button')->contains('Click me');
+
+// has
+
+$this->assertView('welcome')->in('body')->has('.content') 
+
+// hasAttribute
+
+$this->assertView('button')->hasAttribute('attribute', 'value');
+
+// hasClass
+
+$this->assertView('button')->hasClass('btn');
+
+// hasLink
+
+$this->assertView('button')->hasLink(route('welcome'));
