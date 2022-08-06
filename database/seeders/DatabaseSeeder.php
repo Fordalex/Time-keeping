@@ -6,6 +6,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Carbon;
 use App\Models\Company;
+use InvoiceHelper;
 use DB;
 
 class DatabaseSeeder extends Seeder
@@ -24,7 +25,7 @@ class DatabaseSeeder extends Seeder
         DB::table('shifts')->delete();
 
         // create companies
-        DB::table('companies')->insert([
+        $learning_people = DB::table('companies')->insert([
             'name' => 'Learning People',
             'first_line_address' => 'The Agora',
             'city' => 'Ellen Street',
@@ -168,7 +169,19 @@ class DatabaseSeeder extends Seeder
             'description' => "Mentoring",
             'company_id' => $learning_people->id,
         ]);
-        // Invoice has been sent from 19th June 2022 - 21st July 2022 # Learning People ^^
+
+        $invoice_attributes_july = [
+            'from_date' => new Carbon('2022-06-20'),
+            'to_date' => new Carbon('2022-07-21'),
+            'due_date' => Carbon::today()->subDays(10),
+            'company_id' => $learning_people->id,
+            'terms' => 'Payment within 14 days',
+            'bank' => 'HSBC',
+            'account_number' => '01010101',
+            'sort_code' => '00-00-00'
+        ];
+        InvoiceHelper::create_invoice($invoice_attributes_july);
+
         DB::table('shifts')->insert([
             'duration' => 60,
             'hourly_rate' => 20.00,
@@ -183,5 +196,87 @@ class DatabaseSeeder extends Seeder
             'description' => "Marking a project",
             'company_id' => $learning_people->id,
         ]);
+        DB::table('shifts')->insert([
+            'duration' => 30,
+            'hourly_rate' => 20.00,
+            'date' => new Carbon('2022-07-25'),
+            'description' => "Prep for tomorrows meeting",
+            'company_id' => $learning_people->id,
+        ]);
+        DB::table('shifts')->insert([
+            'duration' => 60,
+            'hourly_rate' => 20.00,
+            'date' => new Carbon('2022-07-26'),
+            'description' => "Mentoring",
+            'company_id' => $learning_people->id,
+        ]);
+        DB::table('shifts')->insert([
+            'duration' => 30,
+            'hourly_rate' => 20.00,
+            'date' => new Carbon('2022-07-27'),
+            'description' => "Mentoring / Emails / Slack",
+            'company_id' => $learning_people->id,
+        ]);
+        DB::table('shifts')->insert([
+            'duration' => 60,
+            'hourly_rate' => 20.00,
+            'date' => new Carbon('2022-07-28'),
+            'description' => "Mentoring",
+            'company_id' => $learning_people->id,
+        ]);
+        DB::table('shifts')->insert([
+            'duration' => 105,
+            'hourly_rate' => 25.00,
+            'date' => new Carbon('2022-07-29'),
+            'description' => "Marking a project",
+            'company_id' => $learning_people->id,
+        ]);
+        DB::table('shifts')->insert([
+            'duration' => 90,
+            'hourly_rate' => 25.00,
+            'date' => new Carbon('2022-07-31'),
+            'description' => "Mentoring",
+            'company_id' => $learning_people->id,
+        ]);
+        DB::table('shifts')->insert([
+            'duration' => 75,
+            'hourly_rate' => 25.00,
+            'date' => new Carbon('2022-08-01'),
+            'description' => "Mentoring",
+            'company_id' => $learning_people->id,
+        ]);
+        DB::table('shifts')->insert([
+            'duration' => 105,
+            'hourly_rate' => 25.00,
+            'date' => new Carbon('2022-08-02'),
+            'description' => "Marking a project",
+            'company_id' => $learning_people->id,
+        ]);
+        DB::table('shifts')->insert([
+            'duration' => 75,
+            'hourly_rate' => 25.00,
+            'date' => new Carbon('2022-08-03'),
+            'description' => "Mentoring",
+            'company_id' => $learning_people->id,
+        ]);
+        DB::table('shifts')->insert([
+            'duration' => 90,
+            'hourly_rate' => 25.00,
+            'date' => new Carbon('2022-08-06'),
+            'description' => "Mentoring / Marking a project",
+            'company_id' => $learning_people->id,
+        ]);
+
+        $invoice_attributes_aug = [
+            'from_date' => new Carbon('2022-07-20'),
+            'to_date' => new Carbon('2022-08-21'),
+            'due_date' => Carbon::today()->subDays(10),
+            'company_id' => $learning_people->id,
+            'terms' => 'Payment within 14 days',
+            'bank' => 'HSBC',
+            'account_number' => '01010101',
+            'sort_code' => '00-00-00'
+        ];
+        InvoiceHelper::create_invoice($invoice_attributes_aug);
     }
 }

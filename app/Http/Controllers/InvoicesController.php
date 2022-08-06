@@ -5,6 +5,7 @@ use App\Models\Invoice;
 use App\Models\Shift;
 use App\Models\BilledShift;
 use App\Models\Company;
+use InvoiceHelper;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -15,36 +16,17 @@ class InvoicesController extends Controller
 {
     public function create()
     {
-        $from_date = Carbon::parse(request('from_date'))->format('Y-m-d H:i:s');
-        $to_date = Carbon::parse(request('to_date'))->format('Y-m-d H:i:s');
-        $company = Company::find(request('company_id'));
-        $invoice_number = Invoice::all()->where('company_id', $company->id)->count() + 1;
-        $invoice = Invoice::create([
-            'from_date' => $from_date,
-            'to_date' => $to_date,
-            'due_date' => Carbon::parse(request('due_date'))->format('Y-m-d H:i:s'),
-            'company_id' => $company->id,
-            'company_name' => $company->name,
-            'company_address' => $company->first_line_address,
+        $attributes = [
+            'from_date' => request('from_date'),
+            'to_date' => request('to_date'),
+            'company_id' => request('company_id'),
+            'due_date' => request('due_date'),
             'terms' => request('terms'),
             'bank' => request('bank'),
             'account_number' => request('account_number'),
-            'sort_code' => request('sort_code'),
-            'number' => $invoice_number,
-        ]);
-        // this needs to be moved into a scope or model method
-        $shifts = Shift::all()->where('date', '>=', $from_date)->where('date', '<=', $to_date)->sortby('date');
-        foreach($shifts as $shift)
-        {
-            $billed_shift = BilledShift::create([
-                'date' => $shift->date,
-                'description' => $shift->description,
-                'duration' => $shift->duration,
-                'hourly_rate' => $shift->hourly_rate,
-                'invoice_id' => $invoice->id,
-                'shift_id' => $shift->id,
-            ]);
-        }
+            'sort_code' => request('sort_code')
+        ];
+        InvoiceHelper::create_invoice($attributes);
 
         return redirect('/invoices')->with('flash_message', ["type" => "success", "message" => "Invoice was created successfully!"]);
     }
