@@ -21,7 +21,7 @@
                 <td></td>
                 <td></td>
                 <td><b>Total:</b></td>
-                <td>{{ MoneyHelper::format_money(MoneyHelper::total_earnt($billed_shifts)) }}</td>
+                <td>{{ MoneyHelper::format_money(MoneyHelper::total_earnt($invoice->billed_shifts)) }}</td>
             </tr>
         </tbody>
     </table>

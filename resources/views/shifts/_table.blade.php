@@ -23,7 +23,7 @@
                 <td>{{ $shift->company->name }}</td>
                 <td>
                     @if($shift->billed_shift)
-                        <a class="btn btn-info" href='invoice/{{ $shift->billed_shift->invoice_id }}'>Invoice #{{ $shift->billed_shift->invoice->number }}</a>
+                        <a class="btn btn-info" href='invoice/{{ $shift->billed_shift->invoice_id }}'>Invoice #{{ $shift->billed_shift->invoice->formatted_number() }}</a>
                     @endif
                 </td>
                 <td>

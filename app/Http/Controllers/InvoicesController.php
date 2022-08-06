@@ -86,8 +86,7 @@ class InvoicesController extends Controller
             'invoice' => $invoice,
             'billed_shifts' => $billed_shifts,
         ]);
-        return $pdf->download("{$invoice->company->name} {$invoice->number}.pdf");
+        return $pdf->download(InvoiceHelper::format_pdf_name($invoice));
         // return redirect('/invoices')->with('flash_message', ["type" => "success", "message" => "Invoice was downloaded successfully!"]);
-
     }
 }

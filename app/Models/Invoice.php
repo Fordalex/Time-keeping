@@ -19,6 +19,17 @@ class Invoice extends Model
         return $this->belongsto(Company::class);
     }
 
+    public function formatted_number()
+    {
+        $number_length = strlen(strval($this->number));
+        $formatted_number = "";
+        for ($n = 0; $n <= (2 - $number_length); $n++)
+        {
+            $formatted_number .= "0";
+        }
+        return $formatted_number .= $this->number;
+    }
+
     protected $fillable = [
         'from_date',
         'to_date',

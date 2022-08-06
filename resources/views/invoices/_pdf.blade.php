@@ -70,7 +70,7 @@
                 <h1>Invoice</h1>
             </td>
             <td>
-                <h1>#001</h1>
+                <h1>#{{ $invoice->formatted_number() }}</h1>
             </td>
         </tr>
     </table>
@@ -105,7 +105,7 @@
 
         <p>Due date: {{ $invoice->due_date->format('d M Y') }}</p>
         <p>Payment terms: {{ $invoice->terms }}</p>
-        <p>Amount due: {{ MoneyHelper::format_money(MoneyHelper::total_earnt($billed_shifts)) }}</p>
+        <p>Amount due: {{ MoneyHelper::format_money(MoneyHelper::total_earnt($invoice->billed_shifts)) }}</p>
 
                 <table class="w-full ">
                     <tr>

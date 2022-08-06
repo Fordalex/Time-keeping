@@ -42,5 +42,11 @@ class InvoiceHelper
             ]);
         }
     }
+
+    public static function format_pdf_name($invoice)
+    {
+        $company_name = join("_", explode(" ", $invoice->company->name));
+        return strtolower("{$company_name}_{$invoice->formatted_number()}.pdf");
+    }
 }
 

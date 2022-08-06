@@ -16,7 +16,7 @@
                 <td>{{ $invoice->from_date->format('d M Y') }} - {{ $invoice->to_date->format('d M Y') }}</td>
                 <td>{{ $invoice->from_date->diffInDays($invoice->to_date) }}</th>
                 <td>{{ $invoice->company->name }}</td>
-                <td>{{ $invoice->number }}</td>
+                <td>{{ $invoice->formatted_number() }}</td>
                 <td>{{ MoneyHelper::format_money(MoneyHelper::total_earnt($invoice->billed_shifts)) }}</td>
                 <td>
                     <a href="/invoice/{{ $invoice->id }}" class="btn btn-info">View</a>
