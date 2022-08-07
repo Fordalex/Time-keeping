@@ -3,8 +3,13 @@
 Model validation.
 Model methods.
 Tests.
-Invoices have been paid boolean.
 Add buttons for invoices and companies.
+Get everything working on a user basis.
+Add descriptions/job task to be selected from user created drop down. (These can then be shown in another piechart or some graph)
+Add timeline graph.
+Add button to display all shifts worked.
+Add information for national insurance.
+Add expenses table.
 
 
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
