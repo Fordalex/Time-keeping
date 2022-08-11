@@ -268,10 +268,25 @@ class DatabaseSeeder extends Seeder
             'description' => "Mentoring / Marking a project",
             'company_id' => $learning_people->id,
         ]);
+        DB::table('shifts')->insert([
+            'duration' => 120,
+            'hourly_rate' => 25.00,
+            'date' => new Carbon('2022-08-08'),
+            'description' => "Mentoring",
+            'company_id' => $learning_people->id,
+        ]);
+        DB::table('shifts')->insert([
+            'duration' => 15,
+            'hourly_rate' => 25.00,
+            'date' => new Carbon('2022-08-11'),
+            'description' => "Mentoring",
+            'company_id' => $learning_people->id,
+        ]);
 
         $invoice_attributes_aug = [
             'from_date' => new Carbon('2022-07-22'),
-            'to_date' => new Carbon('2022-08-21'),
+            // 'to_date' => new Carbon('2022-08-21'),
+            'to_date' => Carbon::today(),
             'due_date' => new Carbon('2022-09-04'),
             'company_id' => $learning_people->id,
             'terms' => 'Payment within 14 days',
