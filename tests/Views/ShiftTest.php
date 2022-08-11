@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Views;
 
 use Tests\TestCase;
 use App\Models\Shift;
@@ -15,7 +15,8 @@ class ShiftTest extends TestCase
     public function test_shifts_index()
     {
         $company = Company::factory()->create();
-        $shifts = array(Shift::factory()->for($company)->create());
+        Shift::factory()->for($company)->create();
+        $shifts = Shift::all();
         $total_duration = 60;
         $total_earnt = 20.0;
         $from_date = Carbon::today();
