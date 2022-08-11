@@ -14,7 +14,6 @@ class MoneyHelper
         foreach($shifts as $shift)
         {
             $total_earnt += ($shift->duration / 60) * $shift->hourly_rate;
-            // error_log($total_earnt);
         }
         return $total_earnt;
     }
