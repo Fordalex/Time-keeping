@@ -19,6 +19,11 @@ class Shift extends Model
         return $this->belongsto(Company::class);
     }
 
+    public function total_earnt()
+    {
+        return $this->hourly_rate * ($this->duration / 60);
+    }
+
     protected $fillable = [
         'description',
         'duration',

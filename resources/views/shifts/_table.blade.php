@@ -18,7 +18,7 @@
                 <td>{{ $shift->date->format('d M Y') }}</td>
                 <td>{{ TimeHelper::format_minutes($shift->duration, " ") }}</td>
                 <td>{{ MoneyHelper::format_money($shift->hourly_rate) }}</td>
-                <td>{{ MoneyHelper::format_money($shift->hourly_rate * ($shift->duration / 60)) }}</td>
+                <td>{{ MoneyHelper::format_money($shift->total_earnt()) }}</td>
                 <td>{{ $shift->description }}</td>
                 <td>{{ $shift->company->name }}</td>
                 <td>
