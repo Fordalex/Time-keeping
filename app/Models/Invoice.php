@@ -30,6 +30,26 @@ class Invoice extends Model
         return $formatted_number .= $this->number;
     }
 
+    public function total_days()
+    {
+        return $this->from_date->diffInDays($this->to_date);
+    }
+
+    public function total_amount()
+    {
+        $total_earnt = 0;
+        foreach($this->billed_shifts as $shift)
+        {
+            $total_earnt += ($shift->duration / 60) * $shift->hourly_rate;
+        }
+        return $total_earnt;
+    }
+
+    public function average_per_day()
+    {
+        return $this->total_amount() / $this->total_days();
+    }
+
     protected $fillable = [
         'account_number',
         'due_date',

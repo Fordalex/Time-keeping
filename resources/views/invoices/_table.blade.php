@@ -5,10 +5,11 @@
             <th>Date</th>
             <th>Days</th>
             <th>Company Name</th>
-            <th>Invoice number</th>
+            <th>Invoice No</th>
             <th>Sent</th>
-            <th>Amount</th>
             <th>Paid</th>
+            <th>Amount</th>
+            <th>APD</th>
             <th>Actions</th>
         </tr>
     </thead>
@@ -16,12 +17,13 @@
         @foreach($invoices as $invoice)
             <tr>
                 <td>{{ $invoice->from_date->format('d M Y') }} - {{ $invoice->to_date->format('d M Y') }}</td>
-                <td>{{ $invoice->from_date->diffInDays($invoice->to_date) }}</th>
+                <td>{{ $invoice->total_days() }}</th>
                 <td>{{ $invoice->company->name }}</td>
                 <td>{{ $invoice->formatted_number() }}</td>
                 <td>{{ BooleanHelper::tick_or_cross($invoice->sent) }}</td>
-                <td>{{ MoneyHelper::format_money(MoneyHelper::total_earnt($invoice->billed_shifts)) }}</td>
                 <td>{{ BooleanHelper::tick_or_cross($invoice->paid) }}</td>
+                <td>{{ MoneyHelper::format_money(MoneyHelper::total_earnt($invoice->billed_shifts)) }}</td>
+                <td>{{ MoneyHelper::format_money($invoice->average_per_day()) }}</td>
                 <td class="flex gap-1">
                     <a href="/invoice/{{ $invoice->id }}" class="btn btn-info">View Invoice</a>
                     <form action="/shifts" method="GET">
