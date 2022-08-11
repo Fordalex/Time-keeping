@@ -4,7 +4,7 @@ use Illuminate\Support\Carbon;
 
 class ChartHelper
 {
-    public static function worked_days_of_the_week($shifts)
+    public static function popular_days_worked_for_bar_graph($shifts)
     {
         $days_worked = [
             'Monday' => 0,
@@ -37,6 +37,38 @@ class ChartHelper
             ['Friday', {$friday}, '#466cf2'],
             ['Saturday', {$saturday}, '#bf46f2'],
             ['Sunday', {$sunday}, '#f246b6'],
+        ]";
+    }
+
+    public static function duration_per_day_for_timeline(object $shifts)
+    {
+        $days = [];
+        $first_shift = $shifts->first();
+        $last_shift = $shifts->last();
+        $total_days = $first_shift->date->diffInDays($last_shift->date);
+
+        // Create days hash
+        for ($n = 0; $n <= $total_days; $n++)
+        {
+            $key = strval($first_shift->date->addDays($n)->format('M d'));
+            $days[$key] = 0;
+        }
+
+        // Populate days with amount earnt
+        foreach ($shifts as $shift)
+        {
+            $days[$shift->date->format('M d')] = $shift->total_earnt();
+        }
+
+        // format string to add to JS
+        $days_with_amount = "";
+        foreach ($days as $key=>$value)
+        {
+            $days_with_amount .= "['{$key}', {$value}],";
+        }
+
+        return "[
+            ['Day', 'Earnt'],{$days_with_amount}
         ]";
     }
 }
