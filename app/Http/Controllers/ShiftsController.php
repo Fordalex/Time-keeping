@@ -33,8 +33,7 @@ class ShiftsController extends Controller
             $from_date = Carbon::parse($_REQUEST["from_date"]);
             $to_date = Carbon::parse($_REQUEST["to_date"]);
         }
-        $shifts = Shift::all()->where('date', '>=', $from_date)->where('date', '<=', $to_date)->sortby('date');
-        $shift_range = new ShiftRange($shifts, $from_date, $to_date);
+        $shift_range = new ShiftRange($from_date, $to_date);
 
         return view('shifts.index', [
             'shift_range' => $shift_range

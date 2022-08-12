@@ -1,14 +1,13 @@
 <?php
 
-// Can I keep this generic and use this for Expenses?
-
 namespace App\Lib;
+use App\Models\Shift;
 
 class ShiftRange
 {
-    public function __construct($shifts, $from_date, $to_date)
+    public function __construct($from_date, $to_date)
     {
-        $this->shifts = $shifts;
+        $this->shifts = Shift::all()->where('date', '>=', $from_date)->where('date', '<=', $to_date)->sortby('date');;
         $this->from_date = $from_date;
         $this->to_date = $to_date;
     }
