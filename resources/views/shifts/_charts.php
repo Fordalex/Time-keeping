@@ -1,3 +1,5 @@
+<!-- TODO Refactor - each chart should be it's only shared partial, the other argument passed into the partial should be the data already formatted -->
+
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript">
     google.charts.load('current', {'packages':['corechart']});
@@ -7,8 +9,9 @@
 
 
     function drawDaysWorked() {
-        var daysWorked = <?php echo count($shifts) ?>;
-        var daysOff = <?php echo $from_date->diffInDays($to_date) - count($shifts) ?>;
+        // TODO This should be moved into the charthelper
+        var daysWorked = <?php echo $shift_range->shift_count() ?>;
+        var daysOff = <?php echo $shift_range->total_days() - $shift_range->shift_count() ?>;
         var data = google.visualization.arrayToDataTable([
             ['Task', 'Hours per Day'],
             ['Days Worked', daysWorked],
@@ -22,7 +25,7 @@
     }
 
     function drawDaysOfTheWeek() {
-        var data = google.visualization.arrayToDataTable(<?php echo ChartHelper::popular_days_worked_for_bar_graph($shifts) ?>);
+        var data = google.visualization.arrayToDataTable(<?php echo ChartHelper::popular_days_worked_for_bar_graph($shift_range->shifts) ?>);
         var view = new google.visualization.DataView(data);
         view.setColumns([0, 1,
                         { calc: "stringify",
@@ -40,7 +43,7 @@
     }
 
     function drawChart() {
-        var data = google.visualization.arrayToDataTable(<?php echo ChartHelper::duration_per_day_for_timeline($shifts) ?>);
+        var data = google.visualization.arrayToDataTable(<?php echo ChartHelper::duration_per_day_for_timeline($shift_range->shifts) ?>);
 
         var options = {
             title: 'Company Performance',
@@ -58,5 +61,4 @@
     <div id="piechart" style="width: 330px; height: 200px;"></div>
     <div id="barchart_values" style="width: 330px; height: 200px;"></div>
     <div id="curve_chart" style="width: 330px; height: 200px"></div>
-    <!-- Add a timeline chart based on a date range and display the hours worked for each day. -->
 </div>

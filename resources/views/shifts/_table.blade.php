@@ -13,7 +13,7 @@
         </tr>
     </thead>
     <tbody>
-        @foreach($shifts as $shift)
+        @foreach($shift_range->shifts as $shift)
             <tr>
                 <td>{{ $shift->date->format('d M Y') }}</td>
                 <td>{{ TimeHelper::format_minutes($shift->duration, " ") }}</td>

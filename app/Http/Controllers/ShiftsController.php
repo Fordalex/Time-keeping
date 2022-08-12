@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Shift;
 use App\Models\Company;
+use App\Lib\ShiftRange;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use MoneyHelper;
@@ -33,15 +34,10 @@ class ShiftsController extends Controller
             $to_date = Carbon::parse($_REQUEST["to_date"]);
         }
         $shifts = Shift::all()->where('date', '>=', $from_date)->where('date', '<=', $to_date)->sortby('date');
-        $total_duration = $shifts->sum('duration');
-        $total_earnt = MoneyHelper::total_earnt($shifts);
+        $shift_range = new ShiftRange($shifts, $from_date, $to_date);
 
         return view('shifts.index', [
-            'shifts' => $shifts,
-            'total_duration' => $total_duration,
-            'total_earnt' => $total_earnt,
-            'from_date' => $from_date,
-            'to_date' => $to_date
+            'shift_range' => $shift_range
         ]);
     }
 
