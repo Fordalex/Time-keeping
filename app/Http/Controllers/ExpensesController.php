@@ -9,7 +9,7 @@ class ExpensesController extends Controller
 {
     public function index()
     {
-        $expenses = Expense::all();
+        $expenses = Expense::all()->sortby('date');
 
         return view('expenses.index', [
             'expenses' => $expenses,
