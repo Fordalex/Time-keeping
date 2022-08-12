@@ -18,29 +18,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // delete all
-        DB::table('invoices')->delete();
-        DB::table('companies')->delete();
-        DB::table('billed_shifts')->delete();
-        DB::table('shifts')->delete();
-
-        // create companies
-        $learning_people = DB::table('companies')->insert([
-            'name' => 'Learning People',
-            'first_line_address' => 'The Agora',
-            'city' => 'Ellen Street',
-            'country' => 'HOVE',
-            'postcode' => 'BN3 3LN'
-        ]);
-        DB::table('companies')->insert([
-            'name' => 'Commit Digital',
-            'first_line_address' => 'something',
-            'city' => 'something',
-            'country' => 'UK',
-            'postcode' => 'ddddd'
+        $this->call([
+            CleanSeeder::class,
+            CompanySeeder::class,
+            ExpenseSeeder::class
         ]);
 
-        $learning_people = Company::where('name', 'Learning People')->first();
+        $learning_people = Company::firstWhere('name', 'Learning People');
 
         // create shifts
         DB::table('shifts')->insert([
