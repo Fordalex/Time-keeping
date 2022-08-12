@@ -10,7 +10,7 @@ Add timeline graph.
 Add button to display all shifts worked.
 Add information for national insurance.
 Add expenses table.
-
+Money really needs to be using BigDecimal
 
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
