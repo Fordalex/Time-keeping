@@ -13,15 +13,15 @@
                 <tr>
                     <td>{{ $billed_shift->date->format('d M Y') }}</td>
                     <td>{{ TimeHelper::format_minutes($billed_shift->duration, " ") }}</td>
-                    <td>{{ MoneyHelper::format_money($billed_shift->hourly_rate) }}</td>
-                    <td>{{ MoneyHelper::format_money($billed_shift->hourly_rate * ($billed_shift->duration / 60)) }}</td>
+                    <td>{{ MoneyHelper::format_amount($billed_shift->hourly_rate) }}</td>
+                    <td>{{ MoneyHelper::format_amount($billed_shift->hourly_rate * ($billed_shift->duration / 60)) }}</td>
                 </tr>
             @endforeach
             <tr class="invoice-total">
                 <td></td>
                 <td></td>
                 <td><b>Total:</b></td>
-                <td>{{ MoneyHelper::format_money(MoneyHelper::total_earnt($invoice->billed_shifts)) }}</td>
+                <td>{{ MoneyHelper::format_amount(MoneyHelper::total_earnt($invoice->billed_shifts)) }}</td>
             </tr>
         </tbody>
     </table>

@@ -22,8 +22,8 @@
                 <td>{{ $invoice->formatted_number() }}</td>
                 <td>{{ BooleanHelper::tick_or_cross($invoice->sent) }}</td>
                 <td>{{ BooleanHelper::tick_or_cross($invoice->paid) }}</td>
-                <td>{{ MoneyHelper::format_money(MoneyHelper::total_earnt($invoice->billed_shifts)) }}</td>
-                <td>{{ MoneyHelper::format_money($invoice->average_per_day()) }}</td>
+                <td>{{ MoneyHelper::format_amount(MoneyHelper::total_earnt($invoice->billed_shifts)) }}</td>
+                <td>{{ MoneyHelper::format_amount($invoice->average_per_day()) }}</td>
                 <td class="flex gap-1">
                     <a href="/invoice/{{ $invoice->id }}" class="btn btn-info">View Invoice</a>
                     <form action="/shifts" method="GET">

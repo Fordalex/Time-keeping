@@ -12,13 +12,13 @@ class MoneyTest extends TestCase
 {
     use DatabaseTransactions;
 
-    public function test_format_money()
+    public function test_format_amount()
     {
         $company = Company::factory()->create();
         Shift::factory()
             ->for($company)
             ->create();
-        $this->assertEquals(MoneyHelper::format_money(100), "£100.00");
+        $this->assertEquals(MoneyHelper::format_amount(100), "£100.00");
     }
 
     public function test_total_earnt()

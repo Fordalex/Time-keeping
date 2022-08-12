@@ -20,13 +20,13 @@
 
         <div class="stat">
             <div class="stat-title">Earnt</div>
-            <div class="stat-value">{{ MoneyHelper::format_money($total_earnt) }}</div>
+            <div class="stat-value">{{ MoneyHelper::format_amount($total_earnt) }}</div>
             <div class="stat-desc"></div>
         </div>
 
         <div class="stat">
             <div class="stat-title">After Tax</div>
-            <div class="stat-value">{{ MoneyHelper::format_money($total_earnt * 0.8) }}</div>
+            <div class="stat-value">{{ MoneyHelper::format_amount($total_earnt * 0.8) }}</div>
             <div class="stat-desc"></div>
         </div>
 

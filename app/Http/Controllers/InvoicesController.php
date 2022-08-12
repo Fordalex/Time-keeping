@@ -5,8 +5,6 @@ use App\Models\Invoice;
 use App\Models\Shift;
 use App\Models\BilledShift;
 use App\Models\Company;
-use InvoiceHelper;
-
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use PDF;

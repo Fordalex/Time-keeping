@@ -3,10 +3,9 @@
 namespace App\Http\Controllers;
 use App\Models\Shift;
 use App\Models\Company;
-use MoneyHelper;
-
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use MoneyHelper;
 
 class ShiftsController extends Controller
 
