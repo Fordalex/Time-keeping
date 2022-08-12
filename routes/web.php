@@ -3,6 +3,7 @@
 use App\Http\Controllers\ShiftsController;
 use App\Http\Controllers\InvoicesController;
 use App\Http\Controllers\CompaniesController;
+use App\Http\Controllers\ExpensesController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -32,6 +33,8 @@ Route::get('/invoices', [InvoicesController::class, 'index']);
 Route::get('/invoices/new', [InvoicesController::class, 'new']);
 Route::get('/invoice/{invoice}/destroy', [InvoicesController::class, 'destroy']);
 Route::get('/invoice/download/{invoice}', [InvoicesController::class, 'download']);
+// expenses
+Route::get('/expenses', [ExpensesController::class, 'index']);
 // companies
 Route::post('/company', [CompaniesController::class, 'create']);
 Route::get('/company/{company}', [CompaniesController::class, 'show']);
