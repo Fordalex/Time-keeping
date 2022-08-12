@@ -5,6 +5,7 @@ namespace Tests\Views;
 use Tests\TestCase;
 use App\Models\Shift;
 use App\Models\Company;
+use App\Lib\ShiftRange;
 use Illuminate\Support\Carbon;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
@@ -21,13 +22,10 @@ class ShiftTest extends TestCase
         $total_earnt = 20.0;
         $from_date = Carbon::today();
         $to_date = Carbon::tomorrow();
+        $shift_range = new ShiftRange($from_date, $to_date);
 
         $view = $this->view('shifts.index', [
-            'shifts' => $shifts,
-            'total_duration' => $total_duration,
-            'total_earnt' => $total_earnt,
-            'from_date' => $from_date,
-            'to_date' => $to_date
+            'shift_range' => $shift_range
         ]);
 
         // dd($view);
