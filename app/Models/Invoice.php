@@ -50,6 +50,16 @@ class Invoice extends Model
         return $this->total_amount() / $this->total_days();
     }
 
+    public function total_duration()
+    {
+        $total_dura = 0;
+        foreach($this->billed_shifts as $shift)
+        {
+            $total_dura += $shift->duration;
+        }
+        return $total_dura;
+    }
+
     protected $fillable = [
         'account_number',
         'due_date',

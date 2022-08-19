@@ -10,6 +10,7 @@
             <th>Paid</th>
             <th>Amount</th>
             <th>APD</th>
+            <th>Total hours</th>
             <th>Actions</th>
         </tr>
     </thead>
@@ -20,10 +21,11 @@
                 <td>{{ $invoice->total_days() }}</th>
                 <td>{{ $invoice->company->name }}</td>
                 <td>{{ $invoice->formatted_number() }}</td>
-                <td>{{ BooleanHelper::tick_or_cross($invoice->sent) }}</td>
-                <td>{{ BooleanHelper::tick_or_cross($invoice->paid) }}</td>
+                <td>{{ BooleanHelper::tick_or_cross($invoice->sent) }} Date?</td>
+                <td>{{ BooleanHelper::tick_or_cross($invoice->paid) }} Date?</td>
                 <td>{{ MoneyHelper::format_amount(MoneyHelper::total_earnt($invoice->billed_shifts)) }}</td>
                 <td>{{ MoneyHelper::format_amount($invoice->average_per_day()) }}</td>
+                <td>{{ TimeHelper::format_minutes($invoice->total_duration(), "") }}</td>
                 <td class="flex gap-1">
                     <a href="/invoice/{{ $invoice->id }}" class="btn btn-info">View Invoice</a>
                     <form action="/shifts" method="GET">
