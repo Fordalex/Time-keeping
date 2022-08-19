@@ -13,7 +13,7 @@ class ChartTest extends TestCase
 {
     use DatabaseTransactions;
 
-    public function test_popular_days_worked_for_bar_graph()
+    public function test_duration_worked_per_day_bar_graph()
     {
         $company = Company::factory()->create();
         $sunday = Shift::factory()
@@ -29,7 +29,7 @@ class ChartTest extends TestCase
             ])
             ->create();
         $shifts = Shift::all();
-        $chart_helper_data = ChartHelper::popular_days_worked_for_bar_graph($shifts);
+        $chart_helper_data = ChartHelper::duration_worked_per_day_bar_graph($shifts);
         $chart_data = "[
             ['Element', 'Density', { role: 'style' } ],
             ['Monday', 0, '#f24646'],

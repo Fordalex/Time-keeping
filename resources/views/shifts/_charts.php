@@ -25,7 +25,7 @@
     }
 
     function drawDaysOfTheWeek() {
-        var data = google.visualization.arrayToDataTable(<?php echo ChartHelper::popular_days_worked_for_bar_graph($shift_range->shifts) ?>);
+        var data = google.visualization.arrayToDataTable(<?php echo ChartHelper::duration_worked_per_day_bar_graph($shift_range->shifts) ?>);
         var view = new google.visualization.DataView(data);
         view.setColumns([0, 1,
                         { calc: "stringify",
@@ -34,7 +34,7 @@
                             role: "annotation" },
                         2]);
         var options = {
-            title: "Worked days of the week",
+            title: "Duration worked per day",
             bar: {groupWidth: "95%"},
             legend: { position: "none" },
         };

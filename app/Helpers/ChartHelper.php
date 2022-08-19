@@ -4,7 +4,7 @@ use Illuminate\Support\Carbon;
 
 class ChartHelper
 {
-    public static function popular_days_worked_for_bar_graph($shifts)
+    public static function duration_worked_per_day_bar_graph($shifts)
     {
         $days_worked = [
             'Monday' => 0,
@@ -18,7 +18,7 @@ class ChartHelper
         foreach($shifts as $shift)
         {
             $day = $shift->date->format('l');
-            $days_worked[$day] += 1;
+            $days_worked[$day] += $shift->duration;
         }
         $monday = $days_worked['Monday'];
         $tuesday = $days_worked['Tuesday'];
