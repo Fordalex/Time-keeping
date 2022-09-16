@@ -41,5 +41,10 @@ class ShiftRange
     {
         return count($this->shifts);
     }
+
+    public function average_per_day()
+    {
+        return $this->total_amount() / $this->total_days();
+    }
 }
 

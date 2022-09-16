@@ -13,6 +13,12 @@
         </div>
 
         <div class="stat">
+            <div class="stat-title">Average Per Day</div>
+            <div class="stat-value">{{ MoneyHelper::format_amount($shift_range->average_per_day()) }}</div>
+            <div class="stat-desc"></div>
+        </div>
+
+        <div class="stat">
             <div class="stat-title">Duration</div>
             <div class="stat-value">{{ TimeHelper::format_minutes($shift_range->total_duration(), " ") }}</div>
             <div class="stat-desc"></div>
