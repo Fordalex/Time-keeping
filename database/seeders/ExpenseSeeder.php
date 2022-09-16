@@ -33,6 +33,11 @@ class ExpenseSeeder extends Seeder
             'date' => new Carbon('2022-06-01'),
         ]);
         DB::table('expenses')->insert([
+            'description' => 'GoDaddy - Fordsdevelopment.co.uk',
+            'amount' => 25.18,
+            'date' => new Carbon('2022-06-29'),
+        ]);
+        DB::table('expenses')->insert([
             'description' => 'DigitalOcean',
             'amount' => 6,
             'date' => new Carbon('2022-07-01'),
@@ -43,9 +48,14 @@ class ExpenseSeeder extends Seeder
             'date' => new Carbon('2022-08-01'),
         ]);
         DB::table('expenses')->insert([
-            'description' => 'GoDaddy - Fordsdevelopment.co.uk',
-            'amount' => 25.18,
-            'date' => new Carbon('2022-06-29'),
+            'description' => 'Grammarly',
+            'amount' => 20,
+            'date' => new Carbon('2022-09-05'),
+        ]);
+        DB::table('expenses')->insert([
+            'description' => 'Github Copilot',
+            'amount' => 20,
+            'date' => new Carbon('2022-09-05'),
         ]);
     }
 }
