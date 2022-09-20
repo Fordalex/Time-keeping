@@ -26,6 +26,13 @@ class CompanySeeder extends Seeder
             'postcode' => 'BN3 3LN'
         ]);
         DB::table('companies')->insert([
+            'name' => 'Continental Traveller',
+            'first_line_address' => 'something',
+            'city' => 'something',
+            'country' => 'UK',
+            'postcode' => 'ddddd'
+        ]);
+        DB::table('companies')->insert([
             'name' => 'Commit Digital',
             'first_line_address' => 'something',
             'city' => 'something',

@@ -423,7 +423,27 @@ class LearningPeopleSeeder extends Seeder
             'description' => "Mentoing / Marking a project",
             'company_id' => $learning_people->id,
         ]);
-
+        DB::table('shifts')->insert([
+            'duration' => 120,
+            'hourly_rate' => 25.00,
+            'date' => new Carbon('2022-09-18'),
+            'description' => "Marking a project",
+            'company_id' => $learning_people->id,
+        ]);
+        DB::table('shifts')->insert([
+            'duration' => 135,
+            'hourly_rate' => 25.00,
+            'date' => new Carbon('2022-09-19'),
+            'description' => "Mentoing",
+            'company_id' => $learning_people->id,
+        ]);
+        DB::table('shifts')->insert([
+            'duration' => 45,
+            'hourly_rate' => 25.00,
+            'date' => new Carbon('2022-09-20'),
+            'description' => "Mentoing",
+            'company_id' => $learning_people->id,
+        ]);
 
         $invoice_attributes_sep = [
             'from_date' => new Carbon('2022-08-22'),
