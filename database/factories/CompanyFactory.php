@@ -22,6 +22,7 @@ class CompanyFactory extends Factory
             'city' => fake()->city(),
             'country' => fake()->country(),
             'postcode' => fake()->postcode(),
+            'initial_invoice_no' => 0,
         ];
     }
 }

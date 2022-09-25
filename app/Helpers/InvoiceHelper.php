@@ -13,7 +13,7 @@ class InvoiceHelper
         $from_date = Carbon::parse($attributes['from_date'])->format('Y-m-d H:i:s');
         $to_date = Carbon::parse($attributes['to_date'])->format('Y-m-d H:i:s');
         $company = Company::find($attributes['company_id']);
-        $invoice_number = Invoice::all()->where('company_id', $company->id)->count() + 1;
+        $invoice_number = Invoice::all()->where('company_id', $company->id)->count() + 1 + $company->initial_invoice_no;
 
         $invoice = Invoice::create([
             'from_date' => $from_date,

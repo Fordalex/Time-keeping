@@ -23,21 +23,24 @@ class CompanySeeder extends Seeder
             'first_line_address' => 'The Agora',
             'city' => 'Ellen Street',
             'country' => 'HOVE',
-            'postcode' => 'BN3 3LN'
+            'postcode' => 'BN3 3LN',
+            'initial_invoice_no' => 0,
         ]);
         DB::table('companies')->insert([
             'name' => 'Continental Traveller',
             'first_line_address' => 'something',
             'city' => 'something',
             'country' => 'UK',
-            'postcode' => 'ddddd'
+            'postcode' => 'ddddd',
+            'initial_invoice_no' => 0
         ]);
         DB::table('companies')->insert([
             'name' => 'Commit Digital',
             'first_line_address' => 'something',
             'city' => 'something',
             'country' => 'UK',
-            'postcode' => 'ddddd'
+            'postcode' => 'ddddd',
+            'initial_invoice_no' => 4
         ]);
     }
 }

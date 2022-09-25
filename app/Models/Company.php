@@ -15,5 +15,6 @@ class Company extends Model
         'city',
         'country',
         'postcode',
+        'initial_invoice_no',
     ];
 }

@@ -18,7 +18,7 @@ class InvoiceTest extends TestCase
     public function test_invoices_create()
     {
         $irrelevant_company = Company::factory()->create();
-        $company = Company::factory()->create();
+        $company = Company::factory()->state(['initial_invoice_no' => 3])->create();
         Shift::factory()->for($company)->state(['date' => Carbon::today()])->create();
         Shift::factory()->for($company)->state(['date' => Carbon::tomorrow()])->create();
         Shift::factory()->for($company)->state(['date' => Carbon::today()->subDays(2)])->create();
@@ -37,7 +37,7 @@ class InvoiceTest extends TestCase
             'sort_code' => '00-00-00'
         ];
         $response = $this->post('/invoice', $invoice_attributes);
-        $invoice_attributes["number"] = 2;
+        $invoice_attributes["number"] = 5;
         $this->assertDatabaseHas('invoices', $invoice_attributes);
         $this->assertDatabaseCount('invoices', 3);
         $this->assertDatabaseCount('billed_shifts', 2);
