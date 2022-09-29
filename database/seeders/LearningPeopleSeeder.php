@@ -480,6 +480,50 @@ class LearningPeopleSeeder extends Seeder
             'sent' => true,
         ];
         InvoiceHelper::create_invoice($invoice_attributes_sep);
+
+        DB::table('shifts')->insert([
+            'duration' => 90,
+            'hourly_rate' => 25.00,
+            'date' => new Carbon('2022-09-26'),
+            'description' => "Mentoring",
+            'company_id' => $learning_people->id,
+        ]);
+        DB::table('shifts')->insert([
+            'duration' => 60,
+            'hourly_rate' => 25.00,
+            'date' => new Carbon('2022-09-27'),
+            'description' => "Mentoring",
+            'company_id' => $learning_people->id,
+        ]);
+        DB::table('shifts')->insert([
+            'duration' => 60,
+            'hourly_rate' => 25.00,
+            'date' => new Carbon('2022-09-28'),
+            'description' => "Mentoring / Emails",
+            'company_id' => $learning_people->id,
+        ]);
+        DB::table('shifts')->insert([
+            'duration' => 105,
+            'hourly_rate' => 25.00,
+            'date' => new Carbon('2022-09-29'),
+            'description' => "Mentoring / Emails",
+            'company_id' => $learning_people->id,
+        ]);
+
+        $invoice_attributes_sep = [
+            'from_date' => new Carbon('2022-05-26'),
+            'to_date' => new Carbon('2022-09-25'),
+            // 'to_date' => Carbon::today(),
+            'due_date' => new Carbon('2022-10-09'),
+            'company_id' => $learning_people->id,
+            'terms' => 'Payment within 14 days',
+            'bank' => 'HSBC',
+            'account_number' => env('SORT_CODE'),
+            'sort_code' => env('ACCOUNT_NUMBER'),
+            'paid' => false,
+            'sent' => true,
+        ];
+        InvoiceHelper::create_invoice($invoice_attributes_sep);
     }
 }
 
