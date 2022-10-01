@@ -6,6 +6,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Carbon;
 use App\Models\Company;
+use App\Models\User;
 use InvoiceHelper;
 use DB;
 
@@ -19,9 +20,11 @@ class CommitDigitalSeeder extends Seeder
     public function run()
     {
         $continental_traveller = Company::firstWhere('name', 'Continental Traveller');
+        $user = User::firstWhere('email', 'admin@example.com');
 
         // create shifts
         DB::table('shifts')->insert([
+            'user_id' => $user->id,
             'duration' => 60,
             'hourly_rate' => 30.00,
             'date' => new Carbon('2022-09-26'),
@@ -30,6 +33,7 @@ class CommitDigitalSeeder extends Seeder
         ]);
 
         DB::table('shifts')->insert([
+            'user_id' => $user->id,
             'duration' => 75,
             'hourly_rate' => 30.00,
             'date' => new Carbon('2022-09-25'),
@@ -38,6 +42,7 @@ class CommitDigitalSeeder extends Seeder
         ]);
 
         DB::table('shifts')->insert([
+            'user_id' => $user->id,
             'duration' => 15,
             'hourly_rate' => 30.00,
             'date' => new Carbon('2022-09-28'),

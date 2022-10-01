@@ -7,6 +7,7 @@ use App\Models\BilledShift;
 use App\Models\Company;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use Auth;
 use InvoiceHelper;
 use PDF;
 
@@ -34,7 +35,7 @@ class InvoicesController extends Controller
 
     protected function index()
     {
-        $invoices = Invoice::all();
+        $invoices = Invoice::all()->where('user_id', Auth::id());
 
         return view('invoices.index', [
             'invoices' => $invoices

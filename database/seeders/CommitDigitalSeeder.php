@@ -6,6 +6,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Carbon;
 use App\Models\Company;
+use App\Models\User;
 use InvoiceHelper;
 use DB;
 
@@ -19,6 +20,7 @@ class CommitDigitalSeeder extends Seeder
     public function run()
     {
         $commit_digital = Company::firstWhere('name', 'Commit Digital');
+        $user = User::firstWhere('email', 'admin@example.com');
 
         // create shifts
         DB::table('shifts')->insert([
@@ -27,12 +29,14 @@ class CommitDigitalSeeder extends Seeder
             'date' => new Carbon('2022-03-05'),
             'description' => "TheMetalStore",
             'company_id' => $commit_digital->id,
+            'user_id' => $user->id,
         ]);
         $invoice_attributes_march = [
             'from_date' => new Carbon('2022-03-05'),
             'to_date' => new Carbon('2022-03-06'),
             'due_date' => new Carbon('2022-04-27'),
             'company_id' => $commit_digital->id,
+            'user_id' => $user->id,
             'terms' => 'Payment within 14 days',
             'bank' => 'HSBC',
             'account_number' => env('SORT_CODE'),
@@ -47,6 +51,7 @@ class CommitDigitalSeeder extends Seeder
             'date' => new Carbon('2022-04-30'),
             'description' => "TheMetalStore",
             'company_id' => $commit_digital->id,
+            'user_id' => $user->id,
         ]);
         DB::table('shifts')->insert([
             'duration' => 420,
@@ -54,12 +59,14 @@ class CommitDigitalSeeder extends Seeder
             'date' => new Carbon('2022-05-15'),
             'description' => "TheMetalStore",
             'company_id' => $commit_digital->id,
+            'user_id' => $user->id,
         ]);
         $invoice_attributes_april = [
             'from_date' => new Carbon('2022-04-30'),
             'to_date' => new Carbon('2022-05-15'),
             'due_date' => new Carbon('2022-05-29'),
             'company_id' => $commit_digital->id,
+            'user_id' => $user->id,
             'terms' => 'Payment within 14 days',
             'bank' => 'HSBC',
             'account_number' => env('SORT_CODE'),

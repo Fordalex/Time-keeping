@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Company;
-
+use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 
@@ -24,7 +24,7 @@ class CompaniesController extends Controller
 
     protected function index()
     {
-        $companies = Company::all();
+        $companies = Company::all()->where('user_id', Auth::id());
 
         return view('companies.index', [
             'companies' => $companies

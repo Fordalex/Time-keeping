@@ -29,6 +29,7 @@ class InvoiceHelper
             'number' => $invoice_number,
             'paid' => $attributes['paid'],
             'sent' => $attributes['sent'],
+            'user_id' => $attributes['user_id'],
         ]);
         // this needs to be moved into a scope or model method
         $shifts = Shift::all()->where('date', '>=', $from_date)->where('date', '<=', $to_date)->sortby('date');
@@ -41,6 +42,7 @@ class InvoiceHelper
                 'hourly_rate' => $shift->hourly_rate,
                 'invoice_id' => $invoice->id,
                 'shift_id' => $shift->id,
+                'user_id' => $shift->user_id,
             ]);
         }
     }

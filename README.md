@@ -87,6 +87,7 @@ php artisan route:list
 
 composer require laravel/ui
 php artisan ui:auth
+
 ## Testing view
 
 Run the test suite:
@@ -112,4 +113,3 @@ $this->assertView('button')->hasClass('btn');
 // hasLink
 
 $this->assertView('button')->hasLink(route('welcome'));
-

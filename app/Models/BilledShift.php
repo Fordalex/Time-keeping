@@ -20,7 +20,13 @@ class BilledShift extends Model
     }
 
     protected $fillable = [
-        'date', 'description', 'duration', 'hourly_rate', 'invoice_id', 'shift_id'
+        'date',
+        'description',
+        'duration',
+        'hourly_rate',
+        'invoice_id',
+        'shift_id',
+        'user_id'
     ];
 
     protected $casts = [

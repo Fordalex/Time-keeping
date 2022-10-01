@@ -74,6 +74,7 @@ class Invoice extends Model
         'sort_code',
         'to_date',
         'terms',
+        'user_id'
     ];
 
     protected $casts = [

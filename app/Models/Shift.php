@@ -29,7 +29,8 @@ class Shift extends Model
         'duration',
         'hourly_rate',
         'date',
-        'company_id'
+        'company_id',
+        'user_id'
     ];
 
     protected $casts = [

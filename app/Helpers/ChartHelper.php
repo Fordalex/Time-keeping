@@ -42,6 +42,9 @@ class ChartHelper
 
     public static function duration_per_day_for_timeline(object $shifts)
     {
+        if ($shifts->count() == 0) {
+            return "[['Day', 'Earnt'],[]]";
+        }
         $days = [];
         $first_shift = $shifts->first();
         $last_shift = $shifts->last();
