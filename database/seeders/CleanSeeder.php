@@ -18,6 +18,7 @@ class CleanSeeder extends Seeder
     public function run()
     {
         // delete all
+        DB::table('users')->delete();
         DB::table('expenses')->delete();
         DB::table('invoices')->delete();
         DB::table('companies')->delete();

@@ -9,7 +9,7 @@ use Illuminate\Support\Carbon;
 class CompaniesController extends Controller
 
 {
-    public function create()
+    protected function create()
     {
         Company::create([
             'name' => request('name'),
@@ -22,7 +22,7 @@ class CompaniesController extends Controller
         return redirect('/companies')->with('flash_message', ["type" => "success", "message" => "Company was created successfully!"]);
     }
 
-    public function index()
+    protected function index()
     {
         $companies = Company::all();
 
@@ -31,19 +31,19 @@ class CompaniesController extends Controller
         ]);
     }
 
-    public function new()
+    protected function new()
     {
         $company = new Company;
 
         return view('companies.new', ['company' => $company]);
     }
 
-    public function edit(Company $company)
+    protected function edit(Company $company)
     {
         return view('companies.edit', ['company' => $company]);
     }
 
-    public function update(Company $company)
+    protected function update(Company $company)
     {
         // model validation?
         request()->validate([

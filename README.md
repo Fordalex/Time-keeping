@@ -79,6 +79,14 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 
 error_log('Some message here.');
 
+## routes
+
+php artisan route:list
+
+## authentication
+
+composer require laravel/ui
+php artisan ui:auth
 ## Testing view
 
 Run the test suite:
@@ -104,3 +112,4 @@ $this->assertView('button')->hasClass('btn');
 // hasLink
 
 $this->assertView('button')->hasLink(route('welcome'));
+

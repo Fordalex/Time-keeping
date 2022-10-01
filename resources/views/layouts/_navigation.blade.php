@@ -16,6 +16,10 @@
       </ul>
     </div>
     <div class="navbar-end">
-      <a class="btn" href="/shifts/new">Add Shift</a>
+      @if (Auth::check())
+        <a class="btn" href="/shifts/new">Add Shift</a>
+      @else
+        <a class="btn" href="/login">Login</a>
+      @endif
     </div>
   </div>

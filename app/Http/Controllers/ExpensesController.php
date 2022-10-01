@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 class ExpensesController extends Controller
 
 {
-    public function index()
+    protected function index()
     {
         $expenses = Expense::all()->sortby('date');
 

@@ -11,7 +11,7 @@ use MoneyHelper;
 class ShiftsController extends Controller
 
 {
-    public function create()
+    protected function create()
     {
         Shift::create([
             'date' => Carbon::parse(request('date'))->format('Y-m-d H:i:s'),
@@ -24,7 +24,7 @@ class ShiftsController extends Controller
         return redirect('/shifts')->with('flash_message', ["type" => "success", "message" => "Shift was created successfully!"]);
     }
 
-    public function index()
+    protected function index()
     {
         $from_date = Carbon::today()->subDays(30);
         $to_date = Carbon::today();
@@ -40,7 +40,7 @@ class ShiftsController extends Controller
         ]);
     }
 
-    public function new()
+    protected function new()
     {
         $companies = Company::all();
         $shift = new Shift;
@@ -51,7 +51,7 @@ class ShiftsController extends Controller
         ]);
     }
 
-    public function edit(Shift $shift)
+    protected function edit(Shift $shift)
     {
         $companies = Company::all();
 
@@ -61,7 +61,7 @@ class ShiftsController extends Controller
         ]);
     }
 
-    public function update(Shift $shift)
+    protected function update(Shift $shift)
     {
         // model validation?
         request()->validate([

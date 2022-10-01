@@ -5,9 +5,11 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Carbon;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 use DB;
 
-class DatabaseSeeder extends Seeder
+class UserSeeder extends Seeder
 {
     /**
      * Seed the application's database.
@@ -16,13 +18,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call([
-            CleanSeeder::class,
-            UserSeeder::class,
-            CompanySeeder::class,
-            CommitDigitalSeeder::class,
-            LearningPeopleSeeder::class,
-            ExpenseSeeder::class,
+        User::create([
+            'name' => 'Admin',
+            'email' => 'admin@example.com',
+            'password' => Hash::make('password'),
         ]);
     }
 }

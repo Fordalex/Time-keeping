@@ -13,7 +13,7 @@ use PDF;
 class InvoicesController extends Controller
 
 {
-    public function create()
+    protected function create()
     {
         $attributes = [
             'from_date' => request('from_date'),
@@ -32,7 +32,7 @@ class InvoicesController extends Controller
         return redirect('/invoices')->with('flash_message', ["type" => "success", "message" => "Invoice was created successfully!"]);
     }
 
-    public function index()
+    protected function index()
     {
         $invoices = Invoice::all();
 
@@ -41,7 +41,7 @@ class InvoicesController extends Controller
         ]);
     }
 
-    public function show(Invoice $invoice)
+    protected function show(Invoice $invoice)
     {
         $billed_shifts = Shift::all();
         return view('invoices.download', [
@@ -50,7 +50,7 @@ class InvoicesController extends Controller
         ]);
     }
 
-    public function new()
+    protected function new()
     {
         $companies = Company::all();
         $invoice = new invoice;
@@ -65,7 +65,7 @@ class InvoicesController extends Controller
         ]);
     }
 
-    public function destroy(Invoice $invoice)
+    protected function destroy(Invoice $invoice)
     {
         foreach($invoice->billed_shifts as $billed_shifts)
         {
@@ -79,7 +79,7 @@ class InvoicesController extends Controller
         ]);
     }
 
-    public function download(Invoice $invoice)
+    protected function download(Invoice $invoice)
     {
         $invoice = Invoice::find($invoice->id);
         $billed_shifts = Shift::all();
