@@ -6,10 +6,15 @@ use App\Models\Shift;
 
 class ShiftRange
 {
-    public function __construct($from_date, $to_date)
+    public function __construct($from_date, $to_date, $options)
     {
         $user_id = Auth::id();
-        $this->shifts = Shift::all()->where('user_id', $user_id)->where('date', '>=', $from_date)->where('date', '<=', $to_date)->sortby('date');;
+        $this->not_invoiced = $options['not_invoiced'];
+        if ($this->not_invoiced) {
+            $this->shifts = Shift::all()->where('user_id', $user_id)->where('billed_shift', null)->sortby('date');
+        } else {
+            $this->shifts = Shift::all()->where('user_id', $user_id)->where('date', '>=', $from_date)->where('date', '<=', $to_date)->sortby('date');
+        }
         $this->from_date = $from_date;
         $this->to_date = $to_date;
     }

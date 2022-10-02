@@ -26,7 +26,8 @@ class InvoicesController extends Controller
             'account_number' => request('account_number'),
             'sort_code' => request('sort_code'),
             'paid' => request('paid'),
-            'sent' => request('sent')
+            'sent' => request('sent'),
+            'user_id' => Auth::id(),
         ];
         InvoiceHelper::create_invoice($attributes);
 

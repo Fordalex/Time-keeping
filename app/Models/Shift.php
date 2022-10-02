@@ -30,7 +30,8 @@ class Shift extends Model
         'hourly_rate',
         'date',
         'company_id',
-        'user_id'
+        'user_id',
+        'billed_shift_id'
     ];
 
     protected $casts = [

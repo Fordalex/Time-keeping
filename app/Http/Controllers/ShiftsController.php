@@ -6,6 +6,7 @@ use App\Models\Company;
 use App\Lib\ShiftRange;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use Auth;
 use MoneyHelper;
 
 class ShiftsController extends Controller
@@ -19,6 +20,7 @@ class ShiftsController extends Controller
             'duration' => request('duration'),
             'hourly_rate' => request('hourly_rate'),
             'company_id' => request('company_id'),
+            'user_id' => Auth::id(),
         ]);
 
         return redirect('/shifts')->with('flash_message', ["type" => "success", "message" => "Shift was created successfully!"]);
@@ -33,7 +35,10 @@ class ShiftsController extends Controller
             $from_date = Carbon::parse($_REQUEST["from_date"]);
             $to_date = Carbon::parse($_REQUEST["to_date"]);
         }
-        $shift_range = new ShiftRange($from_date, $to_date);
+        $options = [
+            'not_invoiced' => $_REQUEST["not_invoiced"] ?? false,
+        ];
+        $shift_range = new ShiftRange($from_date, $to_date, $options);
 
         return view('shifts.index', [
             'shift_range' => $shift_range
@@ -43,7 +48,8 @@ class ShiftsController extends Controller
     protected function new()
     {
         $companies = Company::all();
-        $shift = new Shift;
+        $today = Carbon::today();
+        $shift = new Shift(['date' => $today]);
 
         return view('shifts.new', [
             'shift' => $shift,
