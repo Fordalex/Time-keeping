@@ -37,10 +37,12 @@ Route::get('/invoice/download/{invoice}', [InvoicesController::class, 'download'
 // expenses
 Route::get('/expenses', [ExpensesController::class, 'index'])->middleware('auth');
 // companies
-Route::post('/company', [CompaniesController::class, 'create'])->middleware('auth');
-Route::get('/company/{company}', [CompaniesController::class, 'show'])->middleware('auth');
-Route::get('/companies', [CompaniesController::class, 'index'])->middleware('auth');
-Route::get('/companies/new', [CompaniesController::class, 'new'])->middleware('auth');
-Route::get('/company/{company}/destroy', [CompaniesController::class, 'destroy'])->middleware('auth');
+Route::post('/client', [CompaniesController::class, 'create'])->middleware('auth');
+Route::get('/client/{company}', [CompaniesController::class, 'show'])->middleware('auth');
+Route::get('/client/{company}/edit', [CompaniesController::class, 'edit'])->middleware('auth');
+Route::get('/clients', [CompaniesController::class, 'index'])->middleware('auth');
+Route::get('/clients/new', [CompaniesController::class, 'new'])->middleware('auth');
+Route::get('/client/{company}/destroy', [CompaniesController::class, 'destroy'])->middleware('auth');
+Route::put('/clients/{company}', [CompaniesController::class, 'update'])->middleware('auth');
 
 Auth::routes();

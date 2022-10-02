@@ -19,28 +19,32 @@ class CompaniesController extends Controller
             'postcode' => request('postcode'),
         ]);
 
-        return redirect('/companies')->with('flash_message', ["type" => "success", "message" => "Company was created successfully!"]);
+        return redirect('/clients')->with('flash_message', ["type" => "success", "message" => "Company was created successfully!"]);
     }
+
+    protected function show(Company $company)
+    {
+        return view('companies.show', compact('company'));
+    }
+
 
     protected function index()
     {
         $companies = Company::all()->where('user_id', Auth::id());
 
-        return view('companies.index', [
-            'companies' => $companies
-        ]);
+        return view('companies.index', compact('companies'));
     }
 
     protected function new()
     {
         $company = new Company;
 
-        return view('companies.new', ['company' => $company]);
+        return view('companies.new', compact('company'));
     }
 
     protected function edit(Company $company)
     {
-        return view('companies.edit', ['company' => $company]);
+        return view('companies.edit', compact('company'));
     }
 
     protected function update(Company $company)
@@ -48,7 +52,11 @@ class CompaniesController extends Controller
         // model validation?
         request()->validate([
             'name' => 'required',
-            'hourly_rate' => 'required',
+            'first_line_address' => 'required',
+            'city' => 'required',
+            'country' => 'required',
+            'postcode' => 'required',
+            'initial_invoice_no' => 'required',
         ]);
 
         $company->update([
@@ -57,8 +65,9 @@ class CompaniesController extends Controller
             'city' => request('city'),
             'country' => request('country'),
             'postcode' => request('postcode'),
+            'initial_invoice_no' => request('initial_invoice_no'),
         ]);
 
-        return redirect('/companies')->with('flash_message', ["type" => "success", "message" => "Company was updated successfully!"]);;
+        return redirect('/clients')->with('flash_message', ["type" => "success", "message" => "Company was updated successfully!"]);;
     }
 }

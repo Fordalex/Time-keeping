@@ -11,9 +11,9 @@
             <tr>
                 <td>{{ $company->name }}</td>
                 <td>
-                    <a href="/company/{{ $company->id }}" class="btn btn-info">View</a>
-                    <a href="/company/{{ $company->id }}/edit" class="btn btn-warning">Edit</a>
-                    <a href="/company/{{ $company->id }}/destroy" class="btn btn-error">Destroy</a>
+                    <a href="/client/{{ $company->id }}" class="btn btn-info">View</a>
+                    <a href="/client/{{ $company->id }}/edit" class="btn btn-warning">Edit</a>
+                    <a href="/client/{{ $company->id }}/destroy" class="btn btn-error">Destroy</a>
                 </td>
             </tr>
         @endforeach
