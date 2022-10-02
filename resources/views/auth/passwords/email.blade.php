@@ -1,8 +1,6 @@
 @extends('layouts.app')
 @php $breadcrumbs = [["link" => "/", "label" => "Home"]] @endphp
 @section('title', 'Login')
-@extends('layouts.app')
-
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
