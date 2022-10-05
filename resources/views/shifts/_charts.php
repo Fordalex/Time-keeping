@@ -57,7 +57,7 @@
     }
 
 </script>
-    <div class="py-4 flex justify-center">
+    <div class="chart-container">
     <div id="piechart" style="width: 330px; height: 200px;"></div>
     <div id="barchart_values" style="width: 330px; height: 200px;"></div>
     <div id="curve_chart" style="width: 330px; height: 200px"></div>

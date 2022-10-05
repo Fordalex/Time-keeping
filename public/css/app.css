@@ -54,3 +54,25 @@ body {
 .paid-icon {
     width: 45px;
 }
+
+.chart-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.insights-container {
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+}
+
+@media screen and (min-width:768px) {
+    .chart-container {
+        flex-direction: row;
+    }
+
+    .insights-container {
+        grid-template-rows: 1fr;
+    }
+}

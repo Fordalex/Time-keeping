@@ -1,5 +1,5 @@
-<div class="py-4 flex justify-center">
-    <div class="stats stats-horizontal lg:stats-horizontal shadow">
+<div>
+    <div class="stats stats-horizontal lg:stats-horizontal shadow insights-container">
         <div class="stat">
             <div class="stat-title">Days</div>
             <div class="stat-value">{{ $shift_range->total_days() }}</div>
