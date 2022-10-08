@@ -9,27 +9,29 @@ class ShiftRange
     public array $options;
     public $from_date, $to_date;
 
-    public function __construct($from_date, $to_date, $options)
+    public function __construct()
     {
-        $this->options = $options;
-        $this->from_date = $from_date;
-        $this->to_date = $to_date;
+        $this->shift_filter = Auth::user()->preference->shift_filter;
+        $this->company_filter = Auth::user()->preference->company_filter;
+        $this->from_date = Auth::user()->preference->from_date;
+        $this->to_date = Auth::user()->preference->to_date;
         $this->shifts = $this->get_shifts();
     }
 
     public function get_shifts()
     {
         $shifts = Shift::all()->where('user_id', Auth::id())->sortby('date');
-        if ($this->options['shift_filter'] == 'not_invoiced') {
+        if ($this->shift_filter == 'not_invoiced') {
             $shifts = $shifts->where('billed_shift', null);
-        } else if ($this->options['shift_filter'] == 'invoiced') {
+        } else if ($this->shift_filter == 'invoiced') {
             $shifts = $shifts->where('billed_shift', '!=', null);
         }
 
-        if ($this->options['company']) {
-            $shifts = $shifts->where('company_id', $this->options['company']);
+        if ($this->company_filter) {
+            $shifts = $shifts->where('company_id', $this->company_filter);
         }
-        return $shifts->where('date', '>=', $this->from_date)->where('date', '<=', $this->to_date);
+        $shifts = $shifts->where('date', '>=', $this->from_date)->where('date', '<=', $this->to_date);
+        return $shifts;
     }
 
     public function total_amount()

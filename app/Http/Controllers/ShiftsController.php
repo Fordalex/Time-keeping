@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Shift;
 use App\Models\Company;
+use App\Models\Preference;
 use App\Lib\ShiftRange;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -28,6 +29,9 @@ class ShiftsController extends Controller
 
     protected function index()
     {
+        $this->update_preferences();
+        error_log(count(Preference::all()));
+
         $from_date = Carbon::today()->subDays(30);
         $to_date = Carbon::today();
         if (isset($_REQUEST["from_date"]) && isset($_REQUEST["to_date"]))
@@ -41,6 +45,7 @@ class ShiftsController extends Controller
         ];
         $shift_range = new ShiftRange($from_date, $to_date, $options);
         $companies = Company::all()->where('user_id', Auth::id());
+
 
         return view('shifts.index', compact('shift_range', 'companies'));
     }
@@ -78,5 +83,25 @@ class ShiftsController extends Controller
         ]);
 
         return redirect('/shifts')->with('flash_message', ["type" => "success", "message" => "Shift was updated successfully!"]);;
+    }
+
+    protected function update_preferences()
+    {
+        $user = Auth::user();
+        $attributes = [
+            'user_id' => Auth::id(),
+            'shift_filter' => $_REQUEST["shift_filter"] ?? $user->preference?->shift_filter ?? "",
+            'company_filter' => $_REQUEST["company_filter"] ?? $user->preference?->company_filter ?? "",
+            'from_date' => $_REQUEST["from_date"] ?? $user->preference?->from_date ?? null,
+            'to_date' => $_REQUEST["to_date"] ?? $user->preference?->to_date ?? null,
+        ];
+        if ($user->preference)
+        {
+            $user->preference->update($attributes);
+        }
+        else
+        {
+            Preference::create($attributes)->save();
+        }
     }
 }

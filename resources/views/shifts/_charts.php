@@ -58,7 +58,7 @@
 
 </script>
     <div class="chart-container">
-    <div id="piechart" style="width: 330px; height: 200px;"></div>
-    <div id="barchart_values" style="width: 330px; height: 200px;"></div>
-    <div id="curve_chart" style="width: 330px; height: 200px"></div>
+    <div id="piechart"></div>
+    <div id="barchart_values"></div>
+    <div id="curve_chart"></div>
 </div>
