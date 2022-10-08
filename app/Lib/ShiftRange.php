@@ -6,17 +6,30 @@ use App\Models\Shift;
 
 class ShiftRange
 {
+    public array $options;
+    public $from_date, $to_date;
+
     public function __construct($from_date, $to_date, $options)
     {
-        $user_id = Auth::id();
-        $this->not_invoiced = $options['not_invoiced'];
-        if ($this->not_invoiced) {
-            $this->shifts = Shift::all()->where('user_id', $user_id)->where('billed_shift', null)->sortby('date');
-        } else {
-            $this->shifts = Shift::all()->where('user_id', $user_id)->where('date', '>=', $from_date)->where('date', '<=', $to_date)->sortby('date');
-        }
+        $this->options = $options;
         $this->from_date = $from_date;
         $this->to_date = $to_date;
+        $this->shifts = $this->get_shifts();
+    }
+
+    public function get_shifts()
+    {
+        $shifts = Shift::all()->where('user_id', Auth::id())->sortby('date');
+        if ($this->options['shift_filter'] == 'not_invoiced') {
+            $shifts = $shifts->where('billed_shift', null);
+        } else if ($this->options['shift_filter'] == 'invoiced') {
+            $shifts = $shifts->where('billed_shift', '!=', null);
+        }
+
+        if ($this->options['company']) {
+            $shifts = $shifts->where('company_id', $this->options['company']);
+        }
+        return $shifts->where('date', '>=', $this->from_date)->where('date', '<=', $this->to_date);
     }
 
     public function total_amount()

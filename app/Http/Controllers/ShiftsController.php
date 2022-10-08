@@ -36,11 +36,13 @@ class ShiftsController extends Controller
             $to_date = Carbon::parse($_REQUEST["to_date"]);
         }
         $options = [
-            'not_invoiced' => $_REQUEST["not_invoiced"] ?? false,
+            'shift_filter' => $_REQUEST["shiftFilter"] ?? null,
+            'company' => $_REQUEST["company"] ?? null,
         ];
         $shift_range = new ShiftRange($from_date, $to_date, $options);
+        $companies = Company::all()->where('user_id', Auth::id());
 
-        return view('shifts.index', compact('shift_range'));
+        return view('shifts.index', compact('shift_range', 'companies'));
     }
 
     protected function new()

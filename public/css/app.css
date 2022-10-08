@@ -18,7 +18,7 @@ body {
 .page-container {
     max-width: 1600px;
     padding: 1rem;
-    padding-bottom: 7rem;
+    padding-bottom: 9rem;
     display: block;
     margin: auto;
 }
@@ -60,6 +60,7 @@ body {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    padding: 1rem;
 }
 
 .insights-container {
