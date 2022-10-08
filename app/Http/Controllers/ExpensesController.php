@@ -12,8 +12,6 @@ class ExpensesController extends Controller
     {
         $expenses = Expense::all()->where('user_id', Auth::id())->sortby('date');
 
-        return view('expenses.index', [
-            'expenses' => $expenses,
-        ]);
+        return view('expenses.index', compact('expenses'));
     }
 }

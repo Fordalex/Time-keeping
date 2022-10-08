@@ -40,9 +40,7 @@ class ShiftsController extends Controller
         ];
         $shift_range = new ShiftRange($from_date, $to_date, $options);
 
-        return view('shifts.index', [
-            'shift_range' => $shift_range
-        ]);
+        return view('shifts.index', compact('shift_range'));
     }
 
     protected function new()
@@ -51,20 +49,14 @@ class ShiftsController extends Controller
         $today = Carbon::today();
         $shift = new Shift(['date' => $today]);
 
-        return view('shifts.new', [
-            'shift' => $shift,
-            'companies' => $companies,
-        ]);
+        return view('shifts.new', compact('companies', 'shift'));
     }
 
     protected function edit(Shift $shift)
     {
         $companies = Company::all();
 
-        return view('shifts.edit', [
-            'shift' => $shift,
-            'companies' => $companies,
-        ]);
+        return view('shifts.edit', compact('shift', 'companies'));
     }
 
     protected function update(Shift $shift)

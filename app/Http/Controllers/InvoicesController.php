@@ -31,25 +31,23 @@ class InvoicesController extends Controller
         ];
         InvoiceHelper::create_invoice($attributes);
 
-        return redirect('/invoices')->with('flash_message', ["type" => "success", "message" => "Invoice was created successfully!"]);
+        return redirect('/invoices')->with('flash_message', [
+            "type" => "success",
+            "message" => "Invoice was created successfully!"
+        ]);
     }
 
     protected function index()
     {
         $invoices = Invoice::all()->where('user_id', Auth::id());
 
-        return view('invoices.index', [
-            'invoices' => $invoices
-        ]);
+        return view('invoices.index', compact('invoices'));
     }
 
     protected function show(Invoice $invoice)
     {
         $billed_shifts = Shift::all();
-        return view('invoices.download', [
-            'invoice' => $invoice,
-            'billed_shifts' => $billed_shifts,
-        ]);
+        return view('invoices.download', compact('invoice', 'billed_shifts'));
     }
 
     protected function new()
@@ -59,12 +57,7 @@ class InvoicesController extends Controller
         $from_date = $_REQUEST["from_date"];
         $to_date = $_REQUEST["to_date"];
 
-        return view('invoices.new', [
-            'invoice' => $invoice,
-            'from_date' => $from_date,
-            'to_date' => $to_date,
-            'companies' => $companies,
-        ]);
+        return view('invoices.new', compact('companies', 'invoice', 'from_date', 'to_date'));
     }
 
     protected function destroy(Invoice $invoice)
@@ -85,10 +78,7 @@ class InvoicesController extends Controller
     {
         $invoice = Invoice::find($invoice->id);
         $billed_shifts = Shift::all();
-        $pdf = PDF::loadView('invoices.download', [
-            'invoice' => $invoice,
-            'billed_shifts' => $billed_shifts,
-        ]);
+        $pdf = PDF::loadView('invoices.download', compact('invoice', 'billed_shifts'));
         return $pdf->download(InvoiceHelper::format_pdf_name($invoice));
         // return redirect('/invoices')->with('flash_message', ["type" => "success", "message" => "Invoice was downloaded successfully!"]);
     }
