@@ -30,7 +30,6 @@ class ShiftsController extends Controller
     protected function index()
     {
         $this->update_preferences();
-        error_log(count(Preference::all()));
 
         $from_date = Carbon::today()->subDays(30);
         $to_date = Carbon::today();
@@ -92,8 +91,8 @@ class ShiftsController extends Controller
             'user_id' => Auth::id(),
             'shift_filter' => $_REQUEST["shift_filter"] ?? $user->preference?->shift_filter ?? "",
             'company_filter' => $_REQUEST["company_filter"] ?? $user->preference?->company_filter ?? "",
-            'from_date' => $_REQUEST["from_date"] ?? $user->preference?->from_date ?? null,
-            'to_date' => $_REQUEST["to_date"] ?? $user->preference?->to_date ?? null,
+            'from_date' => $_REQUEST["from_date"] ?? $user->preference?->from_date ?? Carbon::today()->subDays(30),
+            'to_date' => $_REQUEST["to_date"] ?? $user->preference?->to_date ?? Carbon::today(),
         ];
         if ($user->preference)
         {
