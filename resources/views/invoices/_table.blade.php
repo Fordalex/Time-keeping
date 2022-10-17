@@ -26,13 +26,25 @@
                 <td>{{ MoneyHelper::format_amount(MoneyHelper::total_earnt($invoice->billed_shifts)) }}</td>
                 <td>{{ MoneyHelper::format_amount($invoice->average_per_day()) }}</td>
                 <td>{{ TimeHelper::format_minutes($invoice->total_duration(), "") }}</td>
-                <td class="flex gap-1">
-                    <a href="/invoice/{{ $invoice->id }}" class="btn btn-info">View Invoice</a>
-                    <form action="/shifts" method="GET">
-                        <input type="hidden" name="from_date" value="{{ $invoice->from_date }}">
-                        <input type="hidden" name="to_date" value="{{ $invoice->to_date }}">
-                        <input type="submit" class="btn btn-info" value="View Shifts">
-                    </form>
+                <td class="gap-1">
+                    <div class="dropdown dropdown-end">
+                        <label tabindex="0" class="btn">View</label>
+                        <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
+                          <li> <form action="/shifts" method="GET">
+                            <input type="hidden" name="from_date" value="{{ $invoice->from_date }}">
+                            <input type="hidden" name="to_date" value="{{ $invoice->to_date }}">
+                            <input type="submit" value="View Shifts">
+                        </form></li>
+                          <li><a href="/invoice/{{ $invoice->id }}">View Invoice</a></li>
+                        </ul>
+                    </div>
+                    <div class="dropdown dropdown-end">
+                        <label tabindex="0" class="btn">Update</label>
+                        <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
+                            <li><a href="/invoice/{{ $invoice->id }}/toggle-sent">Toggle Sent</a></li>
+                            <li><a href="/invoice/{{ $invoice->id }}/toggle-paid">Toggle Paid</a></li>
+                        </ul>
+                    </div>
                     <a href="/invoice/download/{{ $invoice->id }}" class="btn btn-warning">Download</a>
                     <a href="/invoice/{{ $invoice->id }}/destroy" class="btn btn-error">Destroy</a>
                 </td>

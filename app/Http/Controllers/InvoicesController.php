@@ -74,6 +74,28 @@ class InvoicesController extends Controller
         ]);
     }
 
+    protected function toggle_sent(Invoice $invoice)
+    {
+        $invoice->sent = !$invoice->sent;
+        $invoice->save();
+
+        return redirect('/invoices')->with('flash_message', [
+            "type" => "success",
+            "message" => "Invoice was updated"
+        ]);
+    }
+
+    protected function toggle_paid(Invoice $invoice)
+    {
+        $invoice->paid = !$invoice->paid;
+        $invoice->save();
+
+        return redirect('/invoices')->with('flash_message', [
+            "type" => "success",
+            "message" => "Invoice was updated"
+        ]);
+    }
+
     protected function download(Invoice $invoice)
     {
         $invoice = Invoice::find($invoice->id);

@@ -33,6 +33,8 @@ Route::get('/invoice/{invoice}', [InvoicesController::class, 'show'])->middlewar
 Route::get('/invoices', [InvoicesController::class, 'index'])->middleware('auth');
 Route::get('/invoices/new', [InvoicesController::class, 'new'])->middleware('auth');
 Route::get('/invoice/{invoice}/destroy', [InvoicesController::class, 'destroy'])->middleware('auth');
+Route::get('/invoice/{invoice}/toggle-sent', [InvoicesController::class, 'toggle_sent'])->middleware('auth');
+Route::get('/invoice/{invoice}/toggle-paid', [InvoicesController::class, 'toggle_paid'])->middleware('auth');
 Route::get('/invoice/download/{invoice}', [InvoicesController::class, 'download'])->middleware('auth');
 // expenses
 Route::get('/expenses', [ExpensesController::class, 'index'])->middleware('auth');
