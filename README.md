@@ -1,14 +1,12 @@
 ### TODO
 
+Show after tax for each shift.
 Model validation.
 Tests.
-Add buttons for invoices and companies.
-Get everything working on a user basis.
 Add descriptions/job task to be selected from user created drop down. (These can then be shown in another piechart or some graph)
 Add button to display all shifts worked.
 Add information for national insurance.
 Money really needs to be using BigDecimal.
-Company needs to have an attribute for starting invoicing number.
 
 ### Features left to implement
 
