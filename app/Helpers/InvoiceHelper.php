@@ -32,7 +32,12 @@ class InvoiceHelper
             'user_id' => $attributes['user_id'],
         ]);
         // this needs to be moved into a scope or model method
-        $shifts = Shift::all()->where('date', '>=', $from_date)->where('date', '<=', $to_date)->sortby('date');
+        // should only be getting shifts that haven't been billed
+        $shifts = Shift::all()
+            ->where('company_id', $company->id)
+            ->where('date', '>=', $from_date)
+            ->where('date', '<=', $to_date)
+            ->sortby('date');
         foreach($shifts as $shift)
         {
             $billed_shift = BilledShift::create([
