@@ -27,8 +27,8 @@ class InvoiceHelper
             'account_number' => $attributes['account_number'],
             'sort_code' => $attributes['sort_code'],
             'number' => $invoice_number,
-            'paid' => $attributes['paid'],
-            'sent' => $attributes['sent'],
+            'paid' => false,
+            'sent' => false,
             'user_id' => $attributes['user_id'],
         ]);
         // this needs to be moved into a scope or model method
