@@ -38,6 +38,7 @@ class ShiftsController extends Controller
             $from_date = Carbon::parse($_REQUEST["from_date"]);
             $to_date = Carbon::parse($_REQUEST["to_date"]);
         }
+
         $options = [
             'shift_filter' => $_REQUEST["shiftFilter"] ?? null,
             'company' => $_REQUEST["company"] ?? null,
@@ -87,12 +88,28 @@ class ShiftsController extends Controller
     protected function update_preferences()
     {
         $user = Auth::user();
+
+        if (isset($_REQUEST["today"]))
+        {
+            $today = true;
+        } else {
+            $today = false;
+        }
+
+        if ($today)
+        {
+            $to_date = Carbon::today();
+        } else {
+            $to_date = $_REQUEST["to_date"] ?? $user->preference?->to_date ?? Carbon::today();
+        }
+
         $attributes = [
             'user_id' => Auth::id(),
             'shift_filter' => $_REQUEST["shift_filter"] ?? $user->preference?->shift_filter ?? "",
             'company_filter' => $_REQUEST["company_filter"] ?? $user->preference?->company_filter ?? "",
             'from_date' => $_REQUEST["from_date"] ?? $user->preference?->from_date ?? Carbon::today()->subDays(30),
-            'to_date' => $_REQUEST["to_date"] ?? $user->preference?->to_date ?? Carbon::today(),
+            'to_date' => $to_date,
+            'today' => $today
         ];
         if ($user->preference)
         {

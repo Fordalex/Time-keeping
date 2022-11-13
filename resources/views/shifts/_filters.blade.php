@@ -7,6 +7,8 @@
     <div class="col-span-10 sm:col-span-2">
         <label class="label">To Date</label>
         <input type="date" name="to_date" value="{{ Auth::user()->preference->to_date->format('Y-m-d') }}" class="input input-bordered w-full">
+        <label>Today</label>
+        <input type="checkbox" name="today" {{ Auth::user()->preference->today ? 'checked' : '' }} class="mt-2">
     </div>
 
     <div class="col-span-10 sm:col-span-2">

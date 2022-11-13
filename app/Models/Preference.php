@@ -20,6 +20,7 @@ class Preference extends Model
         'shift_filter',
         'to_date',
         'from_date',
+        'today',
     ];
 
     protected $casts = [
