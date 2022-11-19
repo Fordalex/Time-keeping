@@ -24,8 +24,9 @@ class ExpensesController extends Controller
     protected function index()
     {
         $expenses = Expense::all()->where('user_id', Auth::id())->sortby('date');
+        $expenses_total = $expenses->sum('amount');
 
-        return view('expenses.index', compact('expenses'));
+        return view('expenses.index', compact('expenses', 'expenses_total'));
     }
 
     protected function new()
