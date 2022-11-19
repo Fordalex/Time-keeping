@@ -37,7 +37,13 @@ Route::get('/invoice/{invoice}/toggle-sent', [InvoicesController::class, 'toggle
 Route::get('/invoice/{invoice}/toggle-paid', [InvoicesController::class, 'toggle_paid'])->middleware('auth');
 Route::get('/invoice/download/{invoice}', [InvoicesController::class, 'download'])->middleware('auth');
 // expenses
+Route::post('/expense', [ExpensesController::class, 'create'])->middleware('auth');
+Route::get('/expense/{expense}', [ExpensesController::class, 'show'])->middleware('auth');
+Route::get('/expense/{expense}/edit', [ExpensesController::class, 'edit'])->middleware('auth');
 Route::get('/expenses', [ExpensesController::class, 'index'])->middleware('auth');
+Route::get('/expenses/new', [ExpensesController::class, 'new'])->middleware('auth');
+Route::get('/expenses/{expense}/destroy', [ExpensesController::class, 'destory'])->middleware('auth');
+Route::put('/expenses/{expense}', [ExpensesController::class, 'update'])->middleware('auth');
 // companies
 Route::post('/client', [CompaniesController::class, 'create'])->middleware('auth');
 Route::get('/client/{company}', [CompaniesController::class, 'show'])->middleware('auth');

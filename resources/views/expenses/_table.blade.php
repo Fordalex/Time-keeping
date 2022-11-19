@@ -15,7 +15,7 @@
                 <td>{{ $expense->description }}</td>
                 <td>{{ MoneyHelper::format_amount($expense->amount) }}</td>
                 <td class="flex gap-1">
-                    <a class="btn btn-warning">Edit</a>
+                    <a class="btn btn-warning" href="/expense/{{ $expense->id }}/edit">Edit</a>
                     <a href="/expense/{{ $expense->id }}/destroy" class="btn btn-error">Destroy</a>
                 </td>
             </tr>

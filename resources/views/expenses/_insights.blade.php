@@ -11,5 +11,11 @@
             <div class="stat-value">{{ MoneyHelper::format_amount(10) }}</div>
             <div class="stat-desc"></div>
         </div>
+
+        <div class="stat">
+            <div class="stat-actions">
+                <a class="btn btn-success w-full" type="submit" href="expenses/new">Create Expense</a>
+              </div>
+        </div>
     </div>
 </div>
