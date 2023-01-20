@@ -79,8 +79,7 @@
         <tr>
             <td>
                 <h3>Company Details</h3>
-                {{-- Add association with invoice and company --}}
-                <p>The Learning People, The Agora, Ellen Street, HOVE, BN3 3LN, United Kingdom</p>
+                <p>{{ $invoice->company->name }}, {{ $invoice->company->first_line_addres }}, {{ $invoice->company->city }}, {{ $invoice->company->postcode }}, {{ $invoice->company->country }}</p>
             </td>
             <td>
                 <h3>Terms</h3>
